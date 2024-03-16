@@ -38,5 +38,5 @@ model User {
   role          Role      @default(STUDENT)
   status        Status    @default(ENABLE)
   created_at    DateTime? @default(now())
-  updated_at    DateTime? @default(now())
+  updated_at    DateTime? @updatedAt
 }
