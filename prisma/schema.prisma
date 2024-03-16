@@ -6,3 +6,37 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+enum Prefix {
+  MR
+  MISS
+  MRS
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum Status {
+  ENABLE
+  DISABLE
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  username      String    @unique
+  password      String
+  first_name_th String
+  last_name_th  String
+  prefix        Prefix
+  first_name_en String
+  last_name_en  String
+  rmutto_email  String
+  tel           String?
+  role          Role      @default(STUDENT)
+  status        Status    @default(ENABLE)
+  created_at    DateTime? @default(now())
+  updated_at    DateTime? @default(now())
+}
