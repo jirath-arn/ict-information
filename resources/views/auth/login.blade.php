@@ -10,14 +10,21 @@
             <h4 class="uppercase">Rmutto</h4>
         </div>
 
-        <form action="#" class="card mt-5 p-5 md:p-10">
+        <form action="{{ route('login') }}" method="POST" id="loginForm" class="card mt-5 p-5 md:p-10">
+            @csrf
+            
             {{-- Username --}}
             <div class="mb-5">
                 <label for="username" class="label block mb-2">
                     Username
                 </label>
 
-                <input id="username" type="text" class="form-control" placeholder="XXXXXXXXXXXX-X" required />
+                <input id="username" name="username" type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', null) }}" maxlength="20" placeholder="XXXXXXXXXXXX-X" autocomplete="username" required autofocus />
+                @error('username')
+                    <small class="block mt-2 invalid-feedback">
+                        {{ $message }}
+                    </small>
+                @enderror
             </div>
 
             {{-- Password --}}
@@ -26,16 +33,31 @@
                     Password
                 </label>
 
-                <input id="password" type="password" class="form-control" required />
+                <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" autocomplete="current-password" required />
+                @error('password')
+                    <small class="block mt-2 invalid-feedback">
+                        {{ $message }}
+                    </small>
+                @enderror
             </div>
 
             {{-- Login Button --}}
             <div class="flex items-center">
-                <button class="btn btn_primary mx-auto uppercase">
+                <button id="loginButton" type="submit" class="btn btn_primary mx-auto uppercase">
                     Login
                 </button>
             </div>
         </form>
     </div>
 </main>
+@endsection
+
+@section('scripts')
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function() {
+        const btn = document.getElementById('loginButton');
+        btn.setAttribute('disabled', true);
+        btn.innerText = 'Login...';
+    });
+</script>
 @endsection
