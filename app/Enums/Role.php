@@ -6,7 +6,7 @@ use BenSampo\Enum\Enum;
 
 class Role extends Enum
 {
-    const Student = 'STUDENT';
-    const Teacher = 'TEACHER';
-    const Admin = 'ADMIN';
+    const STUDENT = 'STUDENT';
+    const TEACHER = 'TEACHER';
+    const ADMIN = 'ADMIN';
 }
