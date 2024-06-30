@@ -6,6 +6,7 @@ use App\Enums\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -17,9 +18,14 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    public function username()
+    protected function username()
     {
         return 'username';
+    }
+
+    protected function form()
+    {
+        return 'form';
     }
 
     protected function redirectTo()
@@ -38,6 +44,21 @@ class LoginController extends Controller
         } else {
             return '/';
         }
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->form() => ['Invalid username or password.']
+        ]);
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string|max:20',
+            'password' => 'required|string'
+        ]);
     }
 
     public function logout(Request $request)
