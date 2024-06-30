@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\Prefix;
+use App\Enums\Role;
+use App\Enums\Status;
 
 return new class extends Migration
 {
@@ -14,13 +17,13 @@ return new class extends Migration
             $table->string('password');
             $table->string('first_name_th', length: 100);
             $table->string('last_name_th', length: 100);
-            $table->enum('prefix', ['MR', 'MISS', 'MRS']);
+            $table->enum('prefix', [Prefix::MR, Prefix::MISS, Prefix::MRS]);
             $table->string('first_name_en', length: 100);
             $table->string('last_name_en', length: 100);
             $table->string('rmutto_email', length: 150)->unique();
             $table->string('tel', length: 15)->nullable();
-            $table->enum('role', ['STUDENT', 'TEACHER', 'ADMIN'])->default('STUDENT');
-            $table->enum('status', ['ENABLE', 'DISABLE'])->default('ENABLE');
+            $table->enum('role', [Role::STUDENT, Role::TEACHER, Role::ADMIN])->default(Role::STUDENT);
+            $table->enum('status', [Status::ENABLE, Status::DISABLE])->default(Status::ENABLE);
             $table->timestamps();
         });
     }
