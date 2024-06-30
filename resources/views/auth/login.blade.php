@@ -47,6 +47,15 @@
                     Login
                 </button>
             </div>
+
+            {{-- Error --}}
+            @error('form')
+                <div class="flex items-center mt-5">
+                    <small class="block invalid-feedback mx-auto">
+                        {{ $message }}
+                    </small>
+                </div>
+            @enderror
         </form>
     </div>
 </main>

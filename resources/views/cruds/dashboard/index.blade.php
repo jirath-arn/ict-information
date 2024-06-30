@@ -3,8 +3,10 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<main class="container flex items-center justify-center py-10">
-    <a href="{{ route('logout') }}" class="btn btn_primary uppercase" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
+<main class="container flex flex-col items-center justify-center py-10">
+    <h2 class="uppercase">Dashboard</h2>
+    <h4 class="mt-2 uppercase">{{ auth()->user()->role->value }}</h4>
+    <a href="{{ route('logout') }}" class="btn btn_primary mt-6 uppercase" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
         Logout
     </a>
 
