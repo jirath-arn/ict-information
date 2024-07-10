@@ -62,11 +62,12 @@
 @endsection
 
 @section('scripts')
-<script>
-    document.getElementById('loginForm').addEventListener('submit', function() {
-        const btn = document.getElementById('loginButton');
-        btn.setAttribute('disabled', true);
-        btn.innerText = 'Login...';
+<script type="module">
+    $(document).ready(function() {
+        $('#loginForm').submit(function(e) {
+            $('#loginButton').prop('disabled', true);
+            $('#loginButton').text('Login...');
+        });
     });
 </script>
 @endsection
