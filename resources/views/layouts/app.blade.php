@@ -34,12 +34,12 @@
                         <hr />
 
                         <div class="p-5">
-                            <a href="#" class="flex items-center text-gray-700 hover:text-primary">
+                            <a href="{{ route('profile') }}" class="flex items-center text-gray-700 hover:text-primary">
                                 <span class="la la-user-circle text-2xl leading-none mr-2"></span>
                                 View Profile
                             </a>
 
-                            <a href="#" class="flex items-center text-gray-700 hover:text-primary mt-5">
+                            <a href="{{ route('profile') }}" class="flex items-center text-gray-700 hover:text-primary mt-5">
                                 <span class="la la-key text-2xl leading-none mr-2"></span>
                                 Change Password
                             </a>
@@ -70,7 +70,7 @@
         <aside id="menuBar" class="menu-bar menu-sticky menu-wide">
             <div class="menu-items">
                 <div class="menu-header">
-                    <a href="#" class="flex items-center mx-8 mt-8">
+                    <a href="{{ route('profile') }}" class="flex items-center mx-8 mt-8">
                         <span class="avatar w-16 h-16 text-2xl uppercase">
                             {{ substr(auth()->user()->first_name_en, 0, 1) }}
                         </span>
@@ -90,7 +90,7 @@
                         <span class="title">Dashboard</span>
                     </a>
 
-                    <a href="#" class="link">
+                    <a href="{{ route('student_management') }}" class="link">
                         <span class="icon la la-user"></span>
                         <span class="title">Student Management</span>
                     </a>
@@ -101,17 +101,17 @@
                         <span class="title">Student Information</span>
                     </a>
 
-                    <a href="#" class="link">
+                    <a href="{{ route('personal_information') }}" class="link">
                         <span class="icon la la-address-card"></span>
                         <span class="title">Personal Information</span>
                     </a>
 
-                    <a href="#" class="link">
+                    <a href="{{ route('family_information') }}" class="link">
                         <span class="icon la la-user-friends"></span>
                         <span class="title">Family Information</span>
                     </a>
 
-                    <a href="#" class="link">
+                    <a href="{{ route('education_information') }}" class="link">
                         <span class="icon la la-university"></span>
                         <span class="title">Education Information</span>
                     </a>
@@ -125,21 +125,21 @@
         
         <script type="module">
             $(document).ready(function() {
-                // Toggle MenuBar
+                // Toggle MenuBar.
                 $('#menuBarToggle').click(function(e) {
                     e.preventDefault();
 
                     $('#menuBar').toggleClass('menu-hidden');
                 });
 
-                // Initialize Toggle MenuBar
+                // Initialize Toggle MenuBar.
                 if ($(window).width() > 640) {
                     $('#menuBar').removeClass('menu-hidden');
                 } else {
                     $('#menuBar').addClass('menu-hidden');
                 }
 
-                // Initialize Tippy.js Tooltip
+                // Initialize Tippy.js Tooltip.
                 tippy('#profileButton', {
                     content: $('#profileTooltip').html(),
                     trigger: 'click',
@@ -153,11 +153,11 @@
                     appendTo: document.body
                 });
                 
-                // Active Menu
+                // Active Menu.
                 (function() {
                     const path = "{{ url()->current() }}";
                     
-                    $(`a[href="${path}"]`).addClass('active');
+                    $(`#menuBar a[href="${path}"]`).addClass('active');
                 })();
             });
         </script>
