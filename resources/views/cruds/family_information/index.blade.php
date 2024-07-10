@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Family Information')
 
 @section('content')
 <section class="breadcrumb">
-    <h1>Dashboard</h1>
+    <h1>Family Information</h1>
     <ul>
-        <li>Dashboard</li>
+        <li>Family Information</li>
     </ul>
 </section>
 @endsection
