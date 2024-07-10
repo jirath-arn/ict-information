@@ -8,7 +8,7 @@
 
         <title>@yield('title') | ICT-Information</title>
         
-        @vite('resources/css/app.css')
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @yield('styles')
     </head>
