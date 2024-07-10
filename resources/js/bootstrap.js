@@ -1,7 +1,9 @@
 import axios from 'axios';
-import jQuery from 'jquery';
-
 window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+import jQuery from 'jquery';
 window.$ = jQuery;
+
+import tippy from 'tippy.js';
+window.tippy = tippy;
