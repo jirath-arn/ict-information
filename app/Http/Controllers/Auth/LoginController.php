@@ -49,7 +49,7 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
-            $this->form() => ['Invalid username or password.']
+            $this->form() => ['ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง']
         ]);
     }
 

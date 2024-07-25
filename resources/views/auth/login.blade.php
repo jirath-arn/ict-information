@@ -16,7 +16,7 @@
             {{-- Username --}}
             <div class="mb-5">
                 <label for="username" class="label block mb-2">
-                    Username
+                    ชื่อผู้ใช้
                 </label>
 
                 <input id="username" name="username" type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', null) }}" maxlength="20" placeholder="XXXXXXXXXXXX-X" autocomplete="username" required autofocus />
@@ -30,7 +30,7 @@
             {{-- Password --}}
             <div class="mb-5">
                 <label for="password" class="label block mb-2">
-                    Password
+                    รหัสผ่าน
                 </label>
 
                 <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" autocomplete="current-password" required />
@@ -44,7 +44,7 @@
             {{-- Login Button --}}
             <div class="flex items-center">
                 <button id="loginButton" type="submit" class="btn btn_primary mx-auto uppercase">
-                    Login
+                    เข้าสู่ระบบ
                 </button>
             </div>
 
@@ -66,7 +66,7 @@
     $(document).ready(function() {
         $('#loginForm').submit(function(e) {
             $('#loginButton').prop('disabled', true);
-            $('#loginButton').text('Login...');
+            $('#loginButton').text('เข้าสู่ระบบ...');
         });
     });
 </script>
