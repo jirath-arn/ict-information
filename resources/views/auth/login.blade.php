@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login')
+@section('title', 'เข้าสู่ระบบ')
 
 @section('content')
 <main class="container flex items-center justify-center py-10">

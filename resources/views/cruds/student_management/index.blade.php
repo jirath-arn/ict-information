@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Student Management')
+@section('title', 'จัดการข้อมูลนักศึกษา')
 
 @section('styles')
 @php
@@ -11,9 +11,9 @@
 @section('content')
 <div class="lg:flex items-start">
     <section class="breadcrumb">
-        <h1>Student Management</h1>
+        <h1>จัดการข้อมูลนักศึกษา</h1>
         <ul>
-            <li>Student Management</li>
+            <li>จัดการข้อมูลนักศึกษา</li>
         </ul>
     </section>
     
@@ -21,7 +21,7 @@
         {{-- Search --}}
         <form class="flex flex-auto">
             <label class="form-control-addon-within rounded-full">
-                <input type="search" class="form-control border-none" placeholder="Search" />
+                <input type="search" class="form-control border-none" placeholder="ค้นหา" />
                 <button class="text-gray-300 text-xl leading-none la la-search mr-4"></button>
             </label>
         </form>
@@ -30,13 +30,13 @@
             {{-- Sort By --}}
             <div id="sortByTooltip" class="hidden">
                 <div class="dropdown-menu">
-                    <a href="#">Ascending</a>
-                    <a href="#">Descending</a>
+                    <a href="#">น้อย - มาก</a>
+                    <a href="#">มาก - น้อย</a>
                 </div>
             </div>
 
             <button id="sortBy" class="btn btn_secondary btn_outlined uppercase">
-                Sort By
+                จัดเรียงตาม
                 <span class="ml-3 la la-caret-down text-xl leading-none"></span>
             </button>
         </div>
@@ -50,12 +50,12 @@
             <thead>
                 <tr>
                     <th class="text-center uppercase">#</th>
-                    <th class="text-center uppercase">Prefix (TH)</th>
-                    <th class="text-center uppercase">Full Name (TH)</th>
-                    <th class="text-center uppercase">Prefix (EN)</th>
-                    <th class="text-center uppercase">Full Name (EN)</th>
-                    <th class="text-center uppercase">Year</th>
-                    <th class="text-center uppercase">Status</th>
+                    <th class="text-center uppercase">คำนำหน้า</th>
+                    <th class="text-center uppercase">ชื่อ - นามสกุล</th>
+                    <th class="text-center uppercase">Prefix</th>
+                    <th class="text-center uppercase">Full Name</th>
+                    <th class="text-center uppercase">ปี</th>
+                    <th class="text-center uppercase">สถานะ</th>
                     <th class="uppercase"></th>
                 </tr>
             </thead>
@@ -65,11 +65,11 @@
                         <td class="text-center">{{ $student->id }}</td>
                         <td class="text-center">
                             @if ($student->prefix == Prefix::MR)
-                                {{ 'นาย' }}
+                                นาย
                             @elseif ($student->prefix == Prefix::MISS)
-                                {{ 'นางสาว' }}
+                                นางสาว
                             @else
-                                {{ 'นาง' }}
+                                นาง
                             @endif
                         </td>
                         <td class="text-center">{{ $student->first_name_th }} {{ $student->last_name_th }}</td>
@@ -95,18 +95,18 @@
 <div class="card lg:flex mt-5">
     <nav class="flex items-center flex-wrap gap-2 p-5">
         {{-- Prev --}}
-        <button class="btn btn_secondary">Prev</button>
+        <button class="btn btn_secondary">ก่อนหน้า</button>
 
         {{-- Next --}}
-        <button class="btn btn_secondary">Next</button>
+        <button class="btn btn_secondary">ถัดไป</button>
     </nav>
 
     <div class="flex items-center ml-auto p-5 border-t lg:border-t-0 border-divider">
-        Displaying {displayingFrom}-{displayingTo} of {totalCount} items
+        แสดง {displayingFrom}-{displayingTo} จาก {totalCount} รายการ
     </div>
 
     <div class="flex items-center gap-2 p-5 border-t lg:border-t-0 lg:border-l border-divider">
-        <span>Show</span>
+        <span>นำเสนอ</span>
 
         <div id="listSizeTooltip" class="hidden">
             <div class="dropdown-menu">
@@ -122,7 +122,7 @@
             <span class="ml-3 la la-caret-down text-xl leading-none"></span>
         </button>
 
-        <span>items</span>
+        <span>รายการ</span>
     </div>
 </div>
 @endsection

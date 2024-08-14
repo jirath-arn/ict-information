@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Student Information')
+@section('title', 'ข้อมูลนักศึกษา')
 
 @section('content')
 <div class="lg:flex items-start">
     <section class="breadcrumb">
-        <h1>Student Information</h1>
+        <h1>ข้อมูลนักศึกษา</h1>
         <ul>
-            <li>Student Information</li>
+            <li>ข้อมูลนักศึกษา</li>
         </ul>
     </section>
 
     <div class="flex flex-wrap gap-2 items-center ml-auto mb-5">
         <button class="btn btn_primary uppercase">
             <span class="la la-edit text-xl leading-none mr-2"></span>
-            Edit
+            แก้ไข
         </button>
     </div>
 </div>
@@ -25,7 +25,7 @@
             <tbody>
                 <tr>
                     <td class="w-1/4 text-right">
-                        <strong>Student ID</strong>
+                        <strong>รหัสนักศึกษา</strong>
                     </td>
                     <td class="w-3/4 text-left">
                         20000000000-0

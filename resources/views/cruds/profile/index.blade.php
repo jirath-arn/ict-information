@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'โปรไฟล์')
 
 @section('content')
 <section class="breadcrumb">
-    <h1>Profile</h1>
+    <h1>โปรไฟล์</h1>
     <ul>
-        <li>Profile</li>
+        <li>โปรไฟล์</li>
     </ul>
 </section>
 @endsection

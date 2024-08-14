@@ -14,6 +14,7 @@
 
         @php
             use App\Enums\Role;
+            use App\Helpers\Auth;
         @endphp
     </head>
 
@@ -28,11 +29,11 @@
                 <div id="profileTooltip" class="hidden">
                     <div class="w-64">
                         <div class="p-5">
-                            <h5 class="capitalize">{{ auth()->user()->first_name_th }} {{ auth()->user()->last_name_th }}</h5>
+                            <h5 class="capitalize">{{ Auth::getFirstNameTH() }} {{ Auth::getLastNameTH() }}</h5>
                             <p class="capitalize">
-                                @if (auth()->user()->role->value === Role::TEACHER)
+                                @if (Auth::getRole() === Role::TEACHER)
                                     อาจารย์
-                                @elseif (auth()->user()->role->value === Role::STUDENT)
+                                @elseif (Auth::getRole() === Role::STUDENT)
                                     นักศึกษา
                                 @else
                                     ผู้ดูแลระบบ
@@ -69,8 +70,7 @@
 
                 <button id="profileButton" class="ml-4">
                     <span class="avatar uppercase">
-                        {{-- {{ substr(auth()->user()->first_name_en, 0, 1) }} --}}
-                        {{ mb_substr(auth()->user()->first_name_th, 0, 1, 'UTF-8') }}
+                        {{ Auth::getFirstCharacterNameTH() }}
                     </span>
                 </button>
             </div>
@@ -81,48 +81,56 @@
                 <div class="menu-header">
                     <a href="{{ route('profile') }}" class="flex items-center mx-8 mt-8">
                         <span class="avatar w-16 h-16 text-2xl uppercase">
-                            {{-- {{ substr(auth()->user()->first_name_th, 0, 1) }} --}}
+                            {{ Auth::getFirstCharacterNameTH() }}
                         </span>
 
                         <div class="ml-4 text-left">
-                            <h5 class="capitalize">{{ auth()->user()->first_name_en }} {{ auth()->user()->last_name_en }}</h5>
-                            <p class="mt-2 capitalize">{{ strtolower(auth()->user()->role->value) }}</p>
+                            <h5 class="capitalize">{{ Auth::getFirstNameTH() }} {{ Auth::getLastNameTH() }}</h5>
+                            <p class="mt-2 capitalize">
+                                @if (Auth::getRole() === Role::TEACHER)
+                                    อาจารย์
+                                @elseif (Auth::getRole() === Role::STUDENT)
+                                    นักศึกษา
+                                @else
+                                    ผู้ดูแลระบบ
+                                @endif
+                            </p>
                         </div>
                     </a>
                     <hr class="mx-8 my-4" />
                 </div>
 
-                @if (auth()->user()->role->value === Role::TEACHER)
+                @if (Auth::getRole() === Role::TEACHER)
                     {{-- Teacher --}}
                     <a href="{{ route('dashboard') }}" class="link">
                         <span class="icon la la-chalkboard"></span>
-                        <span class="title">Dashboard</span>
+                        <span class="title">แดชบอร์ด</span>
                     </a>
 
                     <a href="{{ route('student_management') }}" class="link">
                         <span class="icon la la-user"></span>
-                        <span class="title">Student Management</span>
+                        <span class="title">จัดการข้อมูลนักศึกษา</span>
                     </a>
-                @elseif (auth()->user()->role->value === Role::STUDENT)
+                @elseif (Auth::getRole() === Role::STUDENT)
                     {{-- Student --}}
                     <a href="{{ route('student_information') }}" class="link">
                         <span class="icon la la-user"></span>
-                        <span class="title">Student Information</span>
+                        <span class="title">ข้อมูลนักศึกษา</span>
                     </a>
 
                     <a href="{{ route('personal_information') }}" class="link">
                         <span class="icon la la-address-card"></span>
-                        <span class="title">Personal Information</span>
+                        <span class="title">ประวัติส่วนตัว</span>
                     </a>
 
                     <a href="{{ route('family_information') }}" class="link">
                         <span class="icon la la-user-friends"></span>
-                        <span class="title">Family Information</span>
+                        <span class="title">ประวัติครอบครัว</span>
                     </a>
 
                     <a href="{{ route('education_information') }}" class="link">
                         <span class="icon la la-university"></span>
-                        <span class="title">Education Information</span>
+                        <span class="title">ประวัติการศึกษา</span>
                     </a>
                 @endif
             </div>
