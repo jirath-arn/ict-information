@@ -24,7 +24,7 @@
                         @yield('description')
                     </h5>
                     <a href="{{ url()->previous() }}" class="btn btn_primary mt-5 uppercase">
-                        Go Back
+                        ย้อนกลับ
                     </a>
                 </div>
             </div>

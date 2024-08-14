@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Enums\Role;
+use App\Helpers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -30,7 +31,7 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        $role = auth()->user()->role->value;
+        $role = Auth::getRole();
 
         if ($role === Role::STUDENT) {
             return '/student_information';

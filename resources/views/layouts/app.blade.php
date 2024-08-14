@@ -28,20 +28,28 @@
                 <div id="profileTooltip" class="hidden">
                     <div class="w-64">
                         <div class="p-5">
-                            <h5 class="capitalize">{{ auth()->user()->first_name_en }} {{ auth()->user()->last_name_en }}</h5>
-                            <p class="capitalize">{{ strtolower(auth()->user()->role->value) }}</p>
+                            <h5 class="capitalize">{{ auth()->user()->first_name_th }} {{ auth()->user()->last_name_th }}</h5>
+                            <p class="capitalize">
+                                @if (auth()->user()->role->value === Role::TEACHER)
+                                    อาจารย์
+                                @elseif (auth()->user()->role->value === Role::STUDENT)
+                                    นักศึกษา
+                                @else
+                                    ผู้ดูแลระบบ
+                                @endif
+                            </p>
                         </div>
                         <hr />
 
                         <div class="p-5">
                             <a href="{{ route('profile') }}" class="flex items-center text-gray-700 hover:text-primary">
                                 <span class="la la-user-circle text-2xl leading-none mr-2"></span>
-                                View Profile
+                                ดูโปรไฟล์
                             </a>
 
                             <a href="{{ route('profile') }}" class="flex items-center text-gray-700 hover:text-primary mt-5">
                                 <span class="la la-key text-2xl leading-none mr-2"></span>
-                                Change Password
+                                เปลี่ยนรหัสผ่าน
                             </a>
                         </div>
                         <hr />
@@ -49,7 +57,7 @@
                         <div class="p-5">
                             <a href="{{ route('logout') }}" class="flex items-center text-gray-700 hover:text-primary" onclick="event.preventDefault(); $('#logoutForm').submit();">
                                 <span class="la la-power-off text-2xl leading-none mr-2"></span>
-                                Logout
+                                ออกจากระบบ
                             </a>
 
                             <form id="logoutForm" action="{{ route('logout') }}" method="POST">
@@ -61,7 +69,8 @@
 
                 <button id="profileButton" class="ml-4">
                     <span class="avatar uppercase">
-                        {{ substr(auth()->user()->first_name_en, 0, 1) }}
+                        {{-- {{ substr(auth()->user()->first_name_en, 0, 1) }} --}}
+                        {{ mb_substr(auth()->user()->first_name_th, 0, 1, 'UTF-8') }}
                     </span>
                 </button>
             </div>
@@ -72,7 +81,7 @@
                 <div class="menu-header">
                     <a href="{{ route('profile') }}" class="flex items-center mx-8 mt-8">
                         <span class="avatar w-16 h-16 text-2xl uppercase">
-                            {{ substr(auth()->user()->first_name_en, 0, 1) }}
+                            {{-- {{ substr(auth()->user()->first_name_th, 0, 1) }} --}}
                         </span>
 
                         <div class="ml-4 text-left">
