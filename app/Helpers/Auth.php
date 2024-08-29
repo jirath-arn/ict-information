@@ -2,8 +2,20 @@
 
 namespace App\Helpers;
 
+use App\Enums\Prefix;
+
 class Auth
 {
+    public static function getUsername()
+    {
+        return auth()->user()->username;
+    }
+
+    public static function getRmuttoEmail()
+    {
+        return auth()->user()->rmutto_email;
+    }
+
     public static function getFirstNameTH()
     {
         return auth()->user()->first_name_th;
@@ -17,6 +29,32 @@ class Auth
     public static function getRole()
     {
         return auth()->user()->role->value;
+    }
+
+    public static function getFullNameTH()
+    {
+        $prefix = auth()->user()->prefix->value;
+        $first_name = auth()->user()->first_name_th;
+        $last_name = auth()->user()->last_name_th;
+
+        if ($prefix === Prefix::MR)         $prefix = 'นาย';
+        elseif ($prefix === Prefix::MISS)   $prefix = 'นางสาว';
+        else                                $prefix = 'นาง';
+
+        return "$prefix $first_name $last_name";
+    }
+
+    public static function getFullNameEN()
+    {
+        $prefix = auth()->user()->prefix->value;
+        $first_name = auth()->user()->first_name_en;
+        $last_name = auth()->user()->last_name_en;
+
+        if ($prefix === Prefix::MR)         $prefix = 'Mr.';
+        elseif ($prefix === Prefix::MISS)   $prefix = 'Miss';
+        else                                $prefix = 'Mrs.';
+
+        return "$prefix $first_name $last_name";
     }
 
     public static function getFirstCharacterNameTH()

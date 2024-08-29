@@ -9,4 +9,6 @@
         <li>แดชบอร์ด</li>
     </ul>
 </section>
+
+@include('layouts.footer')
 @endsection

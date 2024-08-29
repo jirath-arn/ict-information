@@ -9,4 +9,6 @@
         <li>โปรไฟล์</li>
     </ul>
 </section>
+
+@include('layouts.footer')
 @endsection

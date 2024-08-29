@@ -125,6 +125,8 @@
         <span>รายการ</span>
     </div>
 </div>
+
+@include('layouts.footer')
 @endsection
 
 @section('scripts')
