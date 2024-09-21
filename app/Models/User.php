@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\StudentInformation;
 use App\Enums\Prefix;
 use App\Enums\Role;
 use App\Enums\Status;
@@ -61,6 +60,11 @@ class User extends Authenticatable
     public function student_information(): HasOne
     {
         return $this->hasOne(StudentInformation::class, 'user_id', 'id');
+    }
+
+    public function personal_information(): HasOne
+    {
+        return $this->hasOne(PersonalInformation::class, 'user_id', 'id');
     }
 
     public function advisors(): HasMany
