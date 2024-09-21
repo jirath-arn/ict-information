@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->hasOne(PersonalInformation::class, 'user_id', 'id');
     }
 
+    public function education_information(): HasOne
+    {
+        return $this->hasOne(EducationInformation::class, 'user_id', 'id');
+    }
+
     public function advisors(): HasMany
     {
         return $this->hasMany(StudentInformation::class, 'advisor_id', 'id');
