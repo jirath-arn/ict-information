@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
             StudentStatusSeeder::class,
             CountrySeeder::class,
             StudentInformationSeeder::class,
-            PersonalInformationSeeder::class
+            PersonalInformationSeeder::class,
+            EducationInformationSeeder::class
         ]);
     }
 }
