@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             StudentInformationSeeder::class,
             PersonalInformationSeeder::class,
-            EducationInformationSeeder::class
+            EducationInformationSeeder::class,
+            RelationshipSeeder::class,
+            FamilyStatusSeeder::class,
+            CareerSeeder::class
         ]);
     }
 }
