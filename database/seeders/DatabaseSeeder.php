@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             EducationInformationSeeder::class,
             RelationshipSeeder::class,
             FamilyStatusSeeder::class,
-            CareerSeeder::class
+            CareerSeeder::class,
+            FamilyInformationSeeder::class
         ]);
     }
 }
