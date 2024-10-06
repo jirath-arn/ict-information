@@ -12,7 +12,7 @@ class TeacherRole
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $role = Auth::getRole();
+        $role = Auth::getRoleEN();
 
         if ($role === Role::STUDENT) {
             return redirect()->route('student_information');

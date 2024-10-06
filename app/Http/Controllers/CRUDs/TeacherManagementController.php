@@ -5,10 +5,10 @@ namespace App\Http\Controllers\CRUDs;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 
-class DashboardController extends Controller
+class TeacherManagementController extends Controller
 {
     public function index(): View
     {
-        return view('cruds.dashboard.index');
+        return view('cruds.teacher_management.index');
     }
 }
