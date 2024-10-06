@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CRUDs\DashboardController;
 use App\Http\Controllers\CRUDs\EducationInformationController;
@@ -10,6 +9,7 @@ use App\Http\Controllers\CRUDs\PersonalInformationController;
 use App\Http\Controllers\CRUDs\ProfileController;
 use App\Http\Controllers\CRUDs\StudentInformationController;
 use App\Http\Controllers\CRUDs\StudentManagementController;
+use App\Http\Controllers\CRUDs\TeacherManagementController;
 
 Route::redirect('/', '/login');
 Route::redirect('/logout', '/login');
@@ -25,27 +25,38 @@ Route::middleware(['auth'])->group(function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
     // Profile.
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::resource('profile', ProfileController::class);
 
     Route::middleware(['student'])->group(function () {
         // Student Information.
-        Route::get('student_information', [StudentInformationController::class, 'index'])->name('student_information');
+        Route::resource('student_information', StudentInformationController::class);
 
         // Personal Information.
-        Route::get('personal_information', [PersonalInformationController::class, 'index'])->name('personal_information');
-        
+        Route::resource('personal_information', PersonalInformationController::class);
+
         // Family Information.
-        Route::get('family_information', [FamilyInformationController::class, 'index'])->name('family_information');
-        
+        Route::resource('family_information', FamilyInformationController::class);
+
         // Education Information.
-        Route::get('education_information', [EducationInformationController::class, 'index'])->name('education_information');
+        Route::resource('education_information', EducationInformationController::class);
     });
 
     Route::middleware(['teacher'])->group(function () {
         // Dashboard.
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('dashboard', DashboardController::class);
 
         // Student Management.
-        Route::get('student_management', [StudentManagementController::class, 'index'])->name('student_management');
+        Route::resource('student_management', StudentManagementController::class);
+    });
+
+    Route::middleware(['admin'])->group(function () {
+        // Dashboard.
+        Route::resource('dashboard', DashboardController::class);
+
+        // Student Management.
+        Route::resource('student_management', StudentManagementController::class);
+
+        // Teacher Management.
+        Route::resource('teacher_management', TeacherManagementController::class);
     });
 });
