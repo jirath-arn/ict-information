@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
     // Profile.
     Route::resource('profile', ProfileController::class);
 
-    Route::middleware(['student'])->group(function () {
+    Route::middleware(['permission'])->group(function () {
         // Student Information.
         Route::resource('student_information', StudentInformationController::class);
 
@@ -39,17 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
         // Education Information.
         Route::resource('education_information', EducationInformationController::class);
-    });
 
-    Route::middleware(['teacher'])->group(function () {
-        // Dashboard.
-        Route::resource('dashboard', DashboardController::class);
-
-        // Student Management.
-        Route::resource('student_management', StudentManagementController::class);
-    });
-
-    Route::middleware(['admin'])->group(function () {
         // Dashboard.
         Route::resource('dashboard', DashboardController::class);
 
