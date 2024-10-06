@@ -3,9 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\AdminRole;
-use App\Http\Middleware\StudentRole;
-use App\Http\Middleware\TeacherRole;
+use App\Http\Middleware\Permission;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,9 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'admin' => AdminRole::class,
-            'student' => StudentRole::class,
-            'teacher' => TeacherRole::class
+            'permission' => Permission::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
