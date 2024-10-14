@@ -18,7 +18,7 @@
     </section>
 
     <div class="flex flex-wrap gap-2 items-center ml-auto mb-5">
-        <a href="{{ route('education_information.edit', Auth::getId()) }}" class="btn btn_primary uppercase">
+        <a href="{{ route('education_information.edit') }}" class="btn btn_primary uppercase">
             <span class="la la-edit text-xl leading-none mr-2"></span>
             แก้ไข
         </a>

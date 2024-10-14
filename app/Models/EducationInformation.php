@@ -16,6 +16,7 @@ class EducationInformation extends Model
 
     protected $fillable = [
         'user_id',
+        'education',
         'name_school',
         'qualification',
         'graduate_year',
