@@ -2,12 +2,6 @@
 
 @section('title', 'ประวัติครอบครัว')
 
-@section('styles')
-@php
-    use App\Helpers\Auth;
-@endphp
-@endsection
-
 @section('content')
 <div class="lg:flex items-start">
     <section class="breadcrumb">
@@ -18,7 +12,7 @@
     </section>
 
     <div class="flex flex-wrap gap-2 items-center ml-auto mb-5">
-        <a href="{{ route('family_information.edit', Auth::getId()) }}" class="btn btn_primary uppercase">
+        <a href="{{ route('family_information.edit') }}" class="btn btn_primary uppercase">
             <span class="la la-edit text-xl leading-none mr-2"></span>
             แก้ไข
         </a>
