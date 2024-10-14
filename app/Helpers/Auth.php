@@ -4,6 +4,9 @@ namespace App\Helpers;
 
 use App\Enums\Prefix;
 use App\Enums\Role;
+use App\Enums\Scholarship;
+use App\Enums\Income;
+use App\Enums\Life;
 
 class Auth
 {
@@ -132,5 +135,55 @@ class Auth
                 break;
         }
         return $education;
+    }
+
+    public static function convertScholarshipFromENToTH($scholarship): string
+    {
+        if ($scholarship === Scholarship::YES)  $scholarship = 'ได้รับทุน';
+        else                                    $scholarship = 'ไม่ได้รับทุน';
+
+        return $scholarship;
+    }
+
+    public static function convertReligionFromENToTH($religion): string
+    {
+        switch ($religion) {
+            case "BUDDHISM":
+                $religion = 'พุทธ';
+                break;
+            case "CHRISTIANITY":
+                $religion = 'คริสต์';
+                break;
+            case "ISLAM":
+                $religion = 'อิสลาม';
+                break;
+            case "HINDUISM":
+                $religion = 'ฮินดู';
+                break;
+            case "JUDAISM":
+                $religion = 'ยิว';
+                break;
+            case "SIKHISM":
+                $religion = 'ซิกข์';
+                break;
+        }
+        return $religion;
+    }
+
+    public static function convertIncomeFromENToTH($income): string
+    {
+        if ($income === Income::HIGH)       $income = 'มากกว่า 300,000 บาทต่อปี';
+        elseif ($income === Income::MEDIUM) $income = '150,000 - 300,000 บาทต่อปี';
+        else                                $income = 'น้อยกว่า 150,000 บาทต่อปี';
+
+        return $income;
+    }
+
+    public static function convertLifeFromENToTH($life): string
+    {
+        if ($life === Life::YES)    $life = 'มีชีวิตอยู่';
+        else                        $life = 'เสียชีวิต';
+
+        return $life;
     }
 }
