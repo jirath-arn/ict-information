@@ -45,12 +45,12 @@ class PersonalInformation extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function nationality(): BelongsTo
+    public function nationality_info(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'nationality', 'code');
     }
 
-    public function ethnicity(): BelongsTo
+    public function ethnicity_info(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'ethnicity', 'code');
     }
