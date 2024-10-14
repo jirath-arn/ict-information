@@ -94,7 +94,7 @@
                     <hr class="mx-8 my-4" />
                 </div>
 
-                @if (Auth::getRoleEN() === Role::TEACHER)
+                @if (Auth::getRoleEN() == Role::TEACHER)
                     {{-- Teacher --}}
                     <a href="{{ route('dashboard.index') }}" class="link">
                         <span class="icon la la-chalkboard"></span>
@@ -105,7 +105,7 @@
                         <span class="icon la la-user"></span>
                         <span class="title">จัดการข้อมูลนักศึกษา</span>
                     </a>
-                @elseif (Auth::getRoleEN() === Role::STUDENT)
+                @elseif (Auth::getRoleEN() == Role::STUDENT)
                     {{-- Student --}}
                     <a href="{{ route('student_information.index') }}" class="link">
                         <span class="icon la la-user"></span>

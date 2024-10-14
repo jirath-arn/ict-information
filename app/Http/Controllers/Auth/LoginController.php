@@ -35,13 +35,13 @@ class LoginController extends Controller
     {
         $role = Auth::getRoleEN();
 
-        if ($role === Role::STUDENT) {
+        if ($role == Role::STUDENT) {
             return '/student_information';
 
-        } else if ($role === Role::TEACHER) {
+        } else if ($role == Role::TEACHER) {
             return '/dashboard';
 
-        } else if ($role === Role::ADMIN) {
+        } else if ($role == Role::ADMIN) {
             return '/dashboard';
 
         } else {

@@ -24,9 +24,9 @@ class Auth
     {
         $role = auth()->user()->role->value;
 
-        if ($role === Role::STUDENT)        $role = 'นักศึกษา';
-        elseif ($role === Role::TEACHER)    $role = 'อาจารย์';
-        else                                $role = 'ผู้ดูแลระบบ';
+        if ($role == Role::STUDENT)        $role = 'นักศึกษา';
+        elseif ($role == Role::TEACHER)    $role = 'อาจารย์';
+        else                               $role = 'ผู้ดูแลระบบ';
 
         return $role;
     }
@@ -53,9 +53,9 @@ class Auth
         $first_name = auth()->user()->first_name_th;
         $last_name = auth()->user()->last_name_th;
 
-        if ($prefix === Prefix::MR)         $prefix = 'นาย';
-        elseif ($prefix === Prefix::MISS)   $prefix = 'นางสาว';
-        else                                $prefix = 'นาง';
+        if ($prefix == Prefix::MR)         $prefix = 'นาย';
+        elseif ($prefix == Prefix::MISS)   $prefix = 'นางสาว';
+        else                               $prefix = 'นาง';
 
         return "$prefix $first_name $last_name";
     }
@@ -66,9 +66,9 @@ class Auth
         $first_name = auth()->user()->first_name_en;
         $last_name = auth()->user()->last_name_en;
 
-        if ($prefix === Prefix::MR)         $prefix = 'Mr.';
-        elseif ($prefix === Prefix::MISS)   $prefix = 'Miss';
-        else                                $prefix = 'Mrs.';
+        if ($prefix == Prefix::MR)         $prefix = 'Mr.';
+        elseif ($prefix == Prefix::MISS)   $prefix = 'Miss';
+        else                               $prefix = 'Mrs.';
 
         return "$prefix $first_name $last_name";
     }
@@ -103,9 +103,9 @@ class Auth
 
     public static function convertPrefixFromENToTH($prefix): string
     {
-        if ($prefix === Prefix::MR)         $prefix = 'นาย';
-        elseif ($prefix === Prefix::MISS)   $prefix = 'นางสาว';
-        else                                $prefix = 'นาง';
+        if ($prefix == Prefix::MR)         $prefix = 'นาย';
+        elseif ($prefix == Prefix::MISS)   $prefix = 'นางสาว';
+        else                               $prefix = 'นาง';
         return $prefix;
     }
 
@@ -139,8 +139,8 @@ class Auth
 
     public static function convertScholarshipFromENToTH($scholarship): string
     {
-        if ($scholarship === Scholarship::YES)  $scholarship = 'ได้รับทุน';
-        else                                    $scholarship = 'ไม่ได้รับทุน';
+        if ($scholarship == Scholarship::YES)  $scholarship = 'ได้รับทุน';
+        else                                   $scholarship = 'ไม่ได้รับทุน';
 
         return $scholarship;
     }
@@ -172,17 +172,17 @@ class Auth
 
     public static function convertIncomeFromENToTH($income): string
     {
-        if ($income === Income::HIGH)       $income = 'มากกว่า 300,000 บาทต่อปี';
-        elseif ($income === Income::MEDIUM) $income = '150,000 - 300,000 บาทต่อปี';
-        else                                $income = 'น้อยกว่า 150,000 บาทต่อปี';
+        if ($income == Income::HIGH)       $income = 'มากกว่า 300,000 บาทต่อปี';
+        elseif ($income == Income::MEDIUM) $income = '150,000 - 300,000 บาทต่อปี';
+        else                               $income = 'น้อยกว่า 150,000 บาทต่อปี';
 
         return $income;
     }
 
     public static function convertLifeFromENToTH($life): string
     {
-        if ($life === Life::YES)    $life = 'มีชีวิตอยู่';
-        else                        $life = 'เสียชีวิต';
+        if ($life == Life::YES)    $life = 'มีชีวิตอยู่';
+        else                       $life = 'เสียชีวิต';
 
         return $life;
     }

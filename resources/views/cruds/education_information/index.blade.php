@@ -2,12 +2,6 @@
 
 @section('title', 'ประวัติการศึกษา')
 
-@section('styles')
-@php
-    use App\Helpers\Auth;
-@endphp
-@endsection
-
 @section('content')
 <div class="lg:flex items-start">
     <section class="breadcrumb">

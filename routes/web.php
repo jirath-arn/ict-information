@@ -25,28 +25,35 @@ Route::middleware(['auth'])->group(function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
     // Profile.
-    Route::resource('profile', ProfileController::class);
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
 
+    // Permission.
     Route::middleware(['permission'])->group(function () {
         // Student Information.
-        Route::resource('student_information', StudentInformationController::class);
+        Route::get('student_information', [StudentInformationController::class, 'index'])->name('student_information.index');
 
         // Personal Information.
-        Route::resource('personal_information', PersonalInformationController::class);
+        Route::get('personal_information', [PersonalInformationController::class, 'index'])->name('personal_information.index');
+        Route::get('personal_information/edit', [PersonalInformationController::class, 'edit'])->name('personal_information.edit');
+        Route::post('personal_information/update', [PersonalInformationController::class, 'update'])->name('personal_information.update');
 
         // Family Information.
-        Route::resource('family_information', FamilyInformationController::class);
+        Route::get('family_information', [FamilyInformationController::class, 'index'])->name('family_information.index');
+        Route::get('family_information/edit', [FamilyInformationController::class, 'edit'])->name('family_information.edit');
+        Route::post('family_information/update', [FamilyInformationController::class, 'update'])->name('family_information.update');
 
         // Education Information.
-        Route::resource('education_information', EducationInformationController::class);
+        Route::get('education_information', [EducationInformationController::class, 'index'])->name('education_information.index');
+        Route::get('education_information/edit', [EducationInformationController::class, 'edit'])->name('education_information.edit');
+        Route::post('education_information/update', [EducationInformationController::class, 'update'])->name('education_information.update');
 
         // Dashboard.
-        Route::resource('dashboard', DashboardController::class);
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
         // Student Management.
-        Route::resource('student_management', StudentManagementController::class);
+        Route::get('student_management', [StudentManagementController::class, 'index'])->name('student_management.index');
 
         // Teacher Management.
-        Route::resource('teacher_management', TeacherManagementController::class);
+        Route::get('teacher_management', [TeacherManagementController::class, 'index'])->name('teacher_management.index');
     });
 });
