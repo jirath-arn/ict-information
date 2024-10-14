@@ -182,7 +182,8 @@
 
                 // Active Menu.
                 (function() {
-                    const path = "{{ url()->current() }}";
+                    let path = "{{ url()->current() }}";
+                    path = path.split("/").slice(0, 4).join("/");
 
                     $(`#menuBar a[href="${path}"]`).addClass('active');
                 })();
