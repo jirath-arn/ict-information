@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'ประวัติการศึกษา')
+@section('title', 'แก้ไขประวัติการศึกษา')
 
 @section('styles')
 @php
@@ -11,16 +11,21 @@
 @section('content')
 <div class="lg:flex items-start">
     <section class="breadcrumb">
-        <h1>ประวัติการศึกษา</h1>
+        <h1>แก้ไขประวัติการศึกษา</h1>
         <ul>
-            <li>ประวัติการศึกษา</li>
+            <li>แก้ไขประวัติการศึกษา</li>
         </ul>
     </section>
 
     <div class="flex flex-wrap gap-2 items-center ml-auto mb-5">
-        <a href="{{ route('education_information.edit', Auth::getId()) }}" class="btn btn_primary uppercase">
-            <span class="la la-edit text-xl leading-none mr-2"></span>
-            แก้ไข
+        <a href="{{ route('education_information.update', Auth::getId()) }}" class="btn btn_success uppercase">
+            <span class="la la-download text-xl leading-none mr-2"></span>
+            บันทึก
+        </a>
+
+        <a href="{{ route('education_information.index') }}" class="btn btn_danger uppercase">
+            <span class="la la-times text-xl leading-none mr-2"></span>
+            ยกเลิก
         </a>
     </div>
 </div>
@@ -31,42 +36,56 @@
             <tbody>
                 <tr>
                     <td class="w-1/4 text-right font-bold">
-                        ระดับการศึกษาเดิม
+                        <label for="education">ระดับการศึกษาเดิม</label>
                     </td>
                     <td class="w-3/4 text-left">
-                        {{ $info->education ?? '-' }}
+                        <div class="custom-select">
+                            <select id="education" name="education" class="form-control">
+                                @foreach ($education as $key)
+                                    <option value="{{ $key }}" @if ($key == $info->education) selected @endif>{{ Auth::convertEducationFromENToTH($key) }}</option>
+                                @endforeach
+                            </select>
+                            <div class="custom-select-icon la la-caret-down"></div>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td class="text-right font-bold">
-                        สถานที่ศึกษาเดิม
+                        <label for="name_school">สถานที่ศึกษาเดิม</label>
                     </td>
                     <td class="text-left">
-                        {{ $info->name_school ?? '-' }}
+                        <input id="name_school" name="name_school" class="form-control" value="{{ $info->name_school }}" />
                     </td>
                 </tr>
                 <tr>
                     <td class="text-right font-bold">
-                        วุฒิการศึกษาเดิม
+                        <label for="qualification">วุฒิการศึกษาเดิม</label>
                     </td>
                     <td class="text-left">
-                        {{ $info->qualification ?? '-' }}
+                        <input id="qualification" name="qualification" class="form-control" value="{{ $info->qualification }}" />
                     </td>
                 </tr>
                 <tr>
                     <td class="text-right font-bold">
-                        สำเร็จการศึกษาเมื่อปี พ.ศ.
+                        <label for="graduate_year">สำเร็จการศึกษาเมื่อปี พ.ศ.</label>
                     </td>
                     <td class="text-left">
-                        {{ $info->graduate_year ?? '-' }}
+                        <div class="custom-select">
+                            <select id="graduate_year" name="graduate_year" class="form-control">
+                                @for ($year = $current_year; $year > $current_year - 10; $year--)
+                                    <option value="{{ $year }}" @if ($year == $info->graduate_year) selected @endif>{{ $year }}</option>
+                                @endfor
+                            </select>
+                            <div class="custom-select-icon la la-caret-down"></div>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td class="text-right font-bold">
-                        เกรดเฉลี่ยที่สำเร็จการศึกษา
+                        <label for="gpa">เกรดเฉลี่ยที่สำเร็จการศึกษา</label>
                     </td>
                     <td class="text-left">
-                        {{ $info->gpa ?? '-' }}
+                        <input id="gpa" name="gpa" type="number" class="form-control" min="0" max="4" step="0.01" value="{{ $info->gpa }}" />
                     </td>
                 </tr>
             </tbody>

@@ -6,7 +6,7 @@
         <meta name="description" content="Student Management System">
 
         <title>@yield('code') | ICT-Information</title>
-        
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 

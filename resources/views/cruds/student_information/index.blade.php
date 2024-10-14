@@ -10,13 +10,6 @@
             <li>ข้อมูลนักศึกษา</li>
         </ul>
     </section>
-
-    <div class="flex flex-wrap gap-2 items-center ml-auto mb-5">
-        <a href="#" class="btn btn_primary uppercase">
-            <span class="la la-edit text-xl leading-none mr-2"></span>
-            แก้ไข
-        </a>
-    </div>
 </div>
 
 <div class="card">
@@ -24,83 +17,75 @@
         <table class="table table_borderless w-full">
             <tbody>
                 <tr>
-                    <td class="w-1/4 text-right">
-                        <strong>รหัสนักศึกษา</strong>
+                    <td class="w-1/4 text-right font-bold">
+                        รหัสนักศึกษา
                     </td>
                     <td class="w-3/4 text-left">
-                        {{ $info->student_id }}
+                        {{ $info->student_id ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>ชื่อ - นามสกุล</strong>
+                    <td class="text-right font-bold">
+                        ชื่อ - นามสกุล
                     </td>
                     <td class="text-left">
-                        {{ $info->full_name_th }}
+                        {{ $info->full_name_with_prefix_th ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>Full Name</strong>
+                    <td class="text-right font-bold">
+                        Full Name
                     </td>
                     <td class="text-left">
-                        {{ $info->full_name_en }}
+                        {{ $info->full_name_with_prefix_en ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>รหัสบัตรประชาชน</strong>
+                    <td class="text-right font-bold">
+                        อีเมล Rmutto
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->rmutto_email ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>Rmutto Email</strong>
+                    <td class="text-right font-bold">
+                        สถานะนักศึกษา
                     </td>
                     <td class="text-left">
-                        {{ $info->rmutto_email }}
+                        {{ $info->student_status->title ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>สถานะนักศึกษา</strong>
+                    <td class="text-right font-bold">
+                        ชั้นปีที่
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->level ?? '-' }} / {{ $info->year ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>ชั้นปีที่</strong>
+                    <td class="text-right font-bold">
+                        อาจารย์ที่ปรึกษา
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->advisor->full_name_with_prefix_th ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>อาจารย์ที่ปรึกษา</strong>
+                    <td class="text-right font-bold">
+                        เบอร์โทรศัพท์ติดต่อ
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->advisor->tel ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>เบอร์โทรศัพท์ติดต่อ</strong>
+                    <td class="text-right font-bold">
+                        อีเมล Rmutto
                     </td>
                     <td class="text-left">
-                        -
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right">
-                        <strong>Rmutto Email</strong>
-                    </td>
-                    <td class="text-left">
-                        -
+                        {{ $info->advisor->rmutto_email ?? '-' }}
                     </td>
                 </tr>
             </tbody>

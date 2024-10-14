@@ -12,14 +12,14 @@
 
         <form action="{{ route('login') }}" method="POST" id="loginForm" class="card mt-5 p-5 md:p-10">
             @csrf
-            
+
             {{-- Username --}}
             <div class="mb-5">
                 <label for="username" class="label block mb-2">
                     ชื่อผู้ใช้
                 </label>
 
-                <input id="username" name="username" type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', null) }}" maxlength="20" placeholder="XXXXXXXXXXXX-X" autocomplete="username" required autofocus />
+                <input id="username" name="username" type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', null) }}" maxlength="14" placeholder="XXXXXXXXXXXX-X" autocomplete="username" required autofocus />
                 @error('username')
                     <small class="block mt-2 invalid-feedback">
                         {{ $message }}
