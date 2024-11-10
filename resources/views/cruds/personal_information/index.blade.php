@@ -12,7 +12,7 @@
     </section>
 
     <div class="flex flex-wrap gap-2 items-center ml-auto mb-5">
-        <a href="#" class="btn btn_primary uppercase">
+        <a href="{{ route('personal_information.edit') }}" class="btn btn_primary uppercase">
             <span class="la la-edit text-xl leading-none mr-2"></span>
             แก้ไข
         </a>
@@ -24,107 +24,107 @@
         <table class="table table_borderless w-full">
             <tbody>
                 <tr>
-                    <td class="w-1/4 text-right">
-                        <strong>วัน เดือน ปีเกิด</strong>
+                    <td class="w-1/4 text-right font-bold">
+                        วัน เดือน ปีเกิด
                     </td>
                     <td class="w-3/4 text-left">
-                        -
+                        {{ $info->birth_date ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>น้ำหนัก / ส่วนสูง</strong>
+                    <td class="text-right font-bold">
+                        น้ำหนัก / ส่วนสูง
                     </td>
                     <td class="text-left">
-                        - / -
+                        {{ $info->weight ?? '-' }} / {{ $info->height ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>อีเมล</strong>
+                    <td class="text-right font-bold">
+                        อีเมล
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->email ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>เบอร์โทรศัพท์มือถือ</strong>
+                    <td class="text-right font-bold">
+                        เบอร์โทรศัพท์มือถือ
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->tel ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>การได้รับทุน</strong>
+                    <td class="text-right font-bold">
+                        การได้รับทุน
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->scholarship ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>ความพิการ</strong>
+                    <td class="text-right font-bold">
+                        ความพิการ
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->disability ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>หมู่โลหิต</strong>
+                    <td class="text-right font-bold">
+                        หมู่โลหิต
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->blood_type ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>สัญชาติ</strong>
+                    <td class="text-right font-bold">
+                        สัญชาติ
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->nationality->title ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>เชื้อชาติ</strong>
+                    <td class="text-right font-bold">
+                        เชื้อชาติ
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->ethnicity->title ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>ศาสนา</strong>
+                    <td class="text-right font-bold">
+                        ศาสนา
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->religion ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>ขนาดเสื้อกิจกรรม</strong>
+                    <td class="text-right font-bold">
+                        ขนาดเสื้อกิจกรรม
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->shirt_size ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>ความถนัด ความสนใจพิเศษ</strong>
+                    <td class="text-right font-bold">
+                        ความถนัด ความสนใจพิเศษ
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->interest ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right">
-                        <strong>ที่อยู่</strong>
+                    <td class="text-right font-bold">
+                        ที่อยู่
                     </td>
                     <td class="text-left">
-                        -
+                        {{ $info->address ?? '-' }}
                     </td>
                 </tr>
             </tbody>

@@ -3,6 +3,9 @@
 /* Line Awesome */
 @import "line-awesome/dist/line-awesome/css/line-awesome.css";
 
+/* Jquery Datetimepicker */
+@import "jquery-datetimepicker/jquery.datetimepicker.css";
+
 /* Tippy.js */
 @import "tippy.js/dist/tippy.css";
 @import "tippy.js/themes/light-border.css";
