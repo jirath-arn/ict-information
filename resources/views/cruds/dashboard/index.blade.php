@@ -39,7 +39,7 @@
             <div class="flex flex-col gap-y-5">
                 {{-- New Students --}}
                 <div class="card p-5">
-                    <h3>นักศึกษาใหม่</h4>
+                    <h3>นักศึกษาใหม่</h3>
                     <h4 class="chart-value text-2xl mt-2 text-center">{{ $info->student->new }}</h4>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="flex flex-col gap-y-5">
                 {{-- Studying --}}
                 <div class="card p-5">
-                    <h3>กำลังศึกษาอยู่</h4>
+                    <h3>กำลังศึกษาอยู่</h3>
                     <h4 class="chart-value text-2xl mt-2 text-center">{{ $info->student->studying }}</h4>
                 </div>
             </div>
@@ -55,7 +55,7 @@
             <div class="flex flex-col gap-y-5">
                 {{-- Graduated --}}
                 <div class="card p-5">
-                    <h3>จบการศึกษา</h4>
+                    <h3>จบการศึกษา</h3>
                     <h4 class="chart-value text-2xl mt-2 text-center">{{ $info->student->graduated }}</h4>
                 </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="flex flex-col gap-y-5">
                 {{-- Received Scholarship --}}
                 <div class="card p-5">
-                    <h3>ได้รับทุน</h4>
+                    <h3>ได้รับทุน</h3>
                     <h4 class="chart-value text-2xl mt-2 text-center">{{ $info->scholarship->received }}</h4>
                 </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="flex flex-col gap-y-5">
                 {{-- Not Funded --}}
                 <div class="card p-5">
-                    <h3>ไม่ได้รับทุน</h4>
+                    <h3>ไม่ได้รับทุน</h3>
                     <h4 class="chart-value text-2xl mt-2 text-center">{{ $info->scholarship->not_funded }}</h4>
                 </div>
             </div>
@@ -85,7 +85,7 @@
             <div class="flex flex-col gap-y-5">
                 {{-- Normal --}}
                 <div class="card p-5">
-                    <h3>นักศึกษาปกติ</h4>
+                    <h3>นักศึกษาปกติ</h3>
                     <h4 class="chart-value text-2xl mt-2 text-center">{{ $info->student_type->normal }}</h4>
                 </div>
             </div>
@@ -93,7 +93,7 @@
             <div class="flex flex-col gap-y-5">
                 {{-- Transfer --}}
                 <div class="card p-5">
-                    <h3>นักศึกษาเทียบโอน</h4>
+                    <h3>นักศึกษาเทียบโอน</h3>
                     <h4 class="chart-value text-2xl mt-2 text-center">{{ $info->student_type->transfer }}</h4>
                 </div>
             </div>
@@ -317,6 +317,14 @@
                     {
                         data: info['religion']['data'],
                         backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'
+                        ],
+                        borderColor: [
                             'rgb(255, 99, 132)',
                             'rgb(255, 159, 64)',
                             'rgb(255, 205, 86)',
@@ -324,6 +332,7 @@
                             'rgb(54, 162, 235)',
                             'rgb(153, 102, 255)'
                         ],
+                        borderWidth: 1,
                         hoverOffset: 4
                     }
                 ]
@@ -339,6 +348,15 @@
                     {
                         data: info['shirt_size']['data'],
                         backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                        ],
+                        borderColor: [
                             'rgb(255, 99, 132)',
                             'rgb(255, 159, 64)',
                             'rgb(255, 205, 86)',
@@ -347,6 +365,7 @@
                             'rgb(153, 102, 255)',
                             'rgb(201, 203, 207)'
                         ],
+                        borderWidth: 1,
                         hoverOffset: 4
                     }
                 ]
