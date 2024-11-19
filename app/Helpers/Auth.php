@@ -101,6 +101,14 @@ class Auth
         return $char;
     }
 
+    public static function formatPrefix($prefix): string
+    {
+        if ($prefix == Prefix::MR)         $prefix = 'Mr.';
+        elseif ($prefix == Prefix::MISS)   $prefix = 'Miss';
+        else                               $prefix = 'Mrs.';
+        return $prefix;
+    }
+
     public static function convertPrefixFromENToTH($prefix): string
     {
         if ($prefix == Prefix::MR)         $prefix = 'นาย';
