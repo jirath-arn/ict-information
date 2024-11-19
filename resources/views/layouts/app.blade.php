@@ -39,14 +39,12 @@
                         <hr />
 
                         <div class="p-5">
-                            @if (Auth::getRoleEN() !== Role::STUDENT)
-                                <a href="{{ route('profile.index') }}" class="flex items-center text-gray-700 hover:text-primary">
-                                    <span class="la la-user-circle text-2xl leading-none mr-2"></span>
-                                    ดูโปรไฟล์
-                                </a>
-                            @endif
+                            <a href="{{ route('profile.index') }}" class="flex items-center text-gray-700 hover:text-primary">
+                                <span class="la la-user-circle text-2xl leading-none mr-2"></span>
+                                ดูโปรไฟล์
+                            </a>
 
-                            <a href="{{ route('profile.index') }}" class="flex items-center text-gray-700 hover:text-primary @if (Auth::getRoleEN() !== Role::STUDENT) mt-5 @endif">
+                            <a href="{{ route('profile.password') }}" class="flex items-center text-gray-700 hover:text-primary mt-5">
                                 <span class="la la-key text-2xl leading-none mr-2"></span>
                                 เปลี่ยนรหัสผ่าน
                             </a>
