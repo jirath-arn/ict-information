@@ -26,6 +26,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Profile.
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+    Route::post('profile/password', [ProfileController::class, 'update'])->name('profile.update');
 
     // Permission.
     Route::middleware(['permission'])->group(function () {
