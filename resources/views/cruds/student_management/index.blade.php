@@ -97,22 +97,67 @@
                             <div class="inline-flex ml-auto">
                                 @php
                                     $advisor = $student->advisor;
+                                    $user = $student->user;
+                                    $education = $user->education_information;
+                                    $personal = $user->personal_information;
+                                    $family = $user->family_information;
                                 @endphp
                                 <button
                                     data-toggle="modal"
                                     data-target="#detailModal"
                                     class="btn btn-icon btn_outlined btn_secondary"
-                                    data-student_id="{{ $student->username }}"
-                                    data-full_name_th="{{ $student->first_name_th.' '.$student->last_name_th }}"
-                                    data-full_name_with_prefix_th="{{ Auth::convertPrefixFromENToTH($student->prefix).' '.$student->first_name_th.' '.$student->last_name_th }}"
-                                    data-full_name_with_prefix_en="{{ Auth::formatPrefix($student->prefix).' '.$student->first_name_en.' '.$student->last_name_en }}"
-                                    data-rmutto_email="{{ $student->rmutto_email }}"
-                                    data-student_status="{{ $student->student_status->title }}"
-                                    data-level="{{ $student->level }}"
-                                    data-year="{{ Date::convertFromADToBE($student->year) }}"
-                                    data-advisor_full_name_with_prefix_th="{{ Auth::convertPrefixFromENToTH($advisor->prefix).' '.$advisor->first_name_th.' '.$advisor->last_name_th }}"
-                                    data-advisor_tel="{{ Tel::format($advisor->tel) }}"
-                                    data-advisor_rmutto_email="{{ $advisor->rmutto_email }}"
+
+                                    data-student_id="{{ $student->username ?? '-' }}"
+                                    data-full_name_th="{{ $student->first_name_th.' '.$student->last_name_th ?? '-' }}"
+                                    data-full_name_with_prefix_th="{{ Auth::convertPrefixFromENToTH($student->prefix).' '.$student->first_name_th.' '.$student->last_name_th ?? '-' }}"
+                                    data-full_name_with_prefix_en="{{ Auth::formatPrefix($student->prefix).' '.$student->first_name_en.' '.$student->last_name_en ?? '-' }}"
+                                    data-rmutto_email="{{ $student->rmutto_email ?? '-' }}"
+                                    data-student_status="{{ $student->student_status->title ?? '-' }}"
+                                    data-level="{{ $student->level ?? '-' }}"
+                                    data-year="{{ Date::convertFromADToBE($student->year) ?? '-' }}"
+                                    data-advisor_full_name_with_prefix_th="{{ Auth::convertPrefixFromENToTH($advisor->prefix).' '.$advisor->first_name_th.' '.$advisor->last_name_th ?? '-' }}"
+                                    data-advisor_tel="{{ Tel::format($advisor->tel) ?? '-' }}"
+                                    data-advisor_rmutto_email="{{ $advisor->rmutto_email ?? '-' }}"
+
+                                    data-birth_date="{{ Date::convertToBirthDate($personal->birth_date) ?? '-' }}"
+                                    data-weight="{{ $personal->weight ?? '-' }}"
+                                    data-height="{{ $personal->height ?? '-' }}"
+                                    data-email="{{ $personal->email ?? '-' }}"
+                                    data-tel="{{ Tel::format($user->tel) ?? '-' }}"
+                                    data-scholarship="{{ Auth::convertScholarshipFromENToTH($personal->scholarship) ?? '-' }}"
+                                    data-disability="{{ $personal->disability ?? '-' }}"
+                                    data-blood_type="{{ $personal->blood_type ?? '-' }}"
+                                    data-nationality="{{ $personal->nationality_info->title ?? '-' }}"
+                                    data-ethnicity="{{ $personal->ethnicity_info->title ?? '-' }}"
+                                    data-religion="{{ Auth::convertReligionFromENToTH($personal->religion) ?? '-' }}"
+                                    data-shirt_size="{{ $personal->shirt_size ?? '-' }}"
+                                    data-interest="{{ $personal->interest ?? '-' }}"
+                                    data-address="{{ $personal->address ?? '-' }}"
+
+                                    data-family_status="{{ $family->family_status->title ?? '-' }}"
+                                    data-father_full_name_th="{{ $family->father_first_name_th.' '.$family->father_last_name_th ?? '-' }}"
+                                    data-father_full_name_en="{{ $family->father_first_name_en.' '.$family->father_last_name_en ?? '-' }}"
+                                    data-father_life="{{ Auth::convertLifeFromENToTH($family->father_life) ?? '-' }}"
+                                    data-father_income="{{ Auth::convertIncomeFromENToTH($family->father_income) ?? '-' }}"
+                                    data-father_career="{{ $family->father_career->title ?? '-' }}"
+                                    data-mother_full_name_th="{{ $family->mother_first_name_th.' '.$family->mother_last_name_th ?? '-' }}"
+                                    data-mother_full_name_en="{{ $family->mother_first_name_en.' '.$family->mother_last_name_en ?? '-' }}"
+                                    data-mother_life="{{ Auth::convertLifeFromENToTH($family->mother_life) ?? '-' }}"
+                                    data-mother_income="{{ Auth::convertIncomeFromENToTH($family->mother_income) ?? '-' }}"
+                                    data-mother_career="{{ $family->mother_career->title ?? '-' }}"
+                                    data-relative_full_name_th="{{ $family->relative_first_name_th.' '.$family->relative_last_name_th ?? '-' }}"
+                                    data-relative_full_name_en="{{ $family->relative_first_name_en.' '.$family->relative_last_name_en ?? '-' }}"
+                                    data-relationship="{{ $family->relationship->title ?? '-' }}"
+                                    data-relative_life="{{ Auth::convertLifeFromENToTH($family->relative_life) ?? '-' }}"
+                                    data-relative_address="{{ $family->address ?? '-' }}"
+                                    data-relative_income="{{ Auth::convertIncomeFromENToTH($family->relative_income) ?? '-' }}"
+                                    data-relative_career="{{ $family->relative_career->title ?? '-' }}"
+
+                                    data-education="{{ Auth::convertEducationFromENToTH($education->education) ?? '-' }}"
+                                    data-name_school="{{ $education->name_school ?? '-' }}"
+                                    data-qualification="{{ $education->qualification ?? '-' }}"
+                                    data-graduate_year="{{ Date::convertFromADToBE($education->graduate_year) ?? '-' }}"
+                                    data-gpa="{{ $education->gpa ?? '-' }}"
                                 >
                                     <span class="la la-ellipsis-v"></span>
                                 </button>
@@ -135,7 +180,7 @@
     <div class="backdrop active"></div>
     <div class="modal active">
         <div class="modal-dialog max-w-2xl">
-            <div class="modal-content">
+            <div class="modal-content w-full">
                 <div class="modal-header">
                     <h2 class="modal-title"></h2>
                     <button class="close la la-times"></button>
@@ -225,6 +270,55 @@
                     advisor-full-name-with-prefix-th="${m.data(`advisor_full_name_with_prefix_th`)}"
                     advisor-tel="${m.data(`advisor_tel`)}"
                     advisor-rmutto-email="${m.data(`advisor_rmutto_email`)}"
+                />`
+            );
+            $('#personalContent').html(`
+                <x-personal-info-component
+                    birth-date="${m.data(`birth_date`)}"
+                    weight="${m.data(`weight`)}"
+                    height="${m.data(`height`)}"
+                    email="${m.data(`email`)}"
+                    tel="${m.data(`tel`)}"
+                    scholarship="${m.data(`scholarship`)}"
+                    disability="${m.data(`disability`)}"
+                    blood-type="${m.data(`blood_type`)}"
+                    nationality="${m.data(`nationality`)}"
+                    ethnicity="${m.data(`ethnicity`)}"
+                    religion="${m.data(`religion`)}"
+                    shirt-size="${m.data(`shirt_size`)}"
+                    interest="${m.data(`interest`)}"
+                    address="${m.data(`address`)}"
+                />`
+            );
+            $('#familyContent').html(`
+                <x-family-info-component
+                    family-status="${m.data(`family_status`)}"
+                    father-full-name-th="${m.data(`father_full_name_th`)}"
+                    father-full-name-en="${m.data(`father_full_name_en`)}"
+                    father-life="${m.data(`father_life`)}"
+                    father-income="${m.data(`father_income`)}"
+                    father-career="${m.data(`father_career`)}"
+                    mother-full-name-th="${m.data(`mother_full_name_th`)}"
+                    mother-full-name-en="${m.data(`mother_full_name_en`)}"
+                    mother-life="${m.data(`mother_life`)}"
+                    mother-income="${m.data(`mother_income`)}"
+                    mother-career="${m.data(`mother_career`)}"
+                    relative-full-name-th="${m.data(`relative_full_name_th`)}"
+                    relative-full-name-en="${m.data(`relative_full_name_en`)}"
+                    relationship="${m.data(`relationship`)}"
+                    relative-life="${m.data(`relative_life`)}"
+                    relative-address="${m.data(`relative_address`)}"
+                    relative-income="${m.data(`relative_income`)}"
+                    relative-career="${m.data(`relative_career`)}"
+                />`
+            );
+            $('#educationContent').html(`
+                <x-education-info-component
+                    education="${m.data(`education`)}"
+                    name-school="${m.data(`name_school`)}"
+                    qualification="${m.data(`qualification`)}"
+                    graduate-year="${m.data(`graduate_year`)}"
+                    gpa="${m.data(`gpa`)}"
                 />`
             );
 
