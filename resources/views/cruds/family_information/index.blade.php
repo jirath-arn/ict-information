@@ -21,169 +21,26 @@
 
 <div class="card">
     <div class="overflow-x-auto p-10">
-        <table class="table table_borderless w-full">
-            <tbody>
-                <tr>
-                    <td class="w-1/4 text-right font-bold">
-                        สถานะครอบครัว
-                    </td>
-                    <td class="w-3/4 text-left">
-                        {{ $info->family_status->title ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <hr />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        ชื่อ - นามสกุล บิดา
-                    </td>
-                    <td class="text-left">
-                        {{ $info->father_full_name_th ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        Full Name
-                    </td>
-                    <td class="text-left">
-                        {{ $info->father_full_name_en ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        สถานะ บิดา
-                    </td>
-                    <td class="text-left">
-                        {{ $info->father_life ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        รายได้ บิดา
-                    </td>
-                    <td class="text-left">
-                        {{ $info->father_income ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        อาชีพ บิดา
-                    </td>
-                    <td class="text-left">
-                        {{ $info->father_career->title ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <hr />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        ชื่อ - นามสกุล มารดา
-                    </td>
-                    <td class="text-left">
-                        {{ $info->mother_full_name_th ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        Full Name
-                    </td>
-                    <td class="text-left">
-                        {{ $info->mother_full_name_en ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        สถานะ มารดา
-                    </td>
-                    <td class="text-left">
-                        {{ $info->mother_life ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        รายได้ มารดา
-                    </td>
-                    <td class="text-left">
-                        {{ $info->mother_income ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        อาชีพ มารดา
-                    </td>
-                    <td class="text-left">
-                        {{ $info->mother_career->title ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <hr />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        ชื่อ - นามสกุล ผู้ปกครอง
-                    </td>
-                    <td class="text-left">
-                        {{ $info->relative_full_name_th ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        Full Name
-                    </td>
-                    <td class="text-left">
-                        {{ $info->relative_full_name_en ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        ความสัมพันธ์
-                    </td>
-                    <td class="text-left">
-                        {{ $info->relationship->title ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        สถานะ ผู้ปกครอง
-                    </td>
-                    <td class="text-left">
-                        {{ $info->relative_life ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        ที่อยู่
-                    </td>
-                    <td class="text-left">
-                        {{ $info->address ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        รายได้ ผู้ปกครอง
-                    </td>
-                    <td class="text-left">
-                        {{ $info->relative_income ?? '-' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right font-bold">
-                        อาชีพ ผู้ปกครอง
-                    </td>
-                    <td class="text-left">
-                        {{ $info->relative_career->title ?? '-' }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <x-family-info-component
+            family-status="{{ $info->family_status->title ?? '-' }}"
+            father-full-name-th="{{ $info->father_full_name_th ?? '-' }}"
+            father-full-name-en="{{ $info->father_full_name_en ?? '-' }}"
+            father-life="{{ $info->father_life ?? '-' }}"
+            father-income="{{ $info->father_income ?? '-' }}"
+            father-career="{{ $info->father_career->title ?? '-' }}"
+            mother-full-name-th="{{ $info->mother_full_name_th ?? '-' }}"
+            mother-full-name-en="{{ $info->mother_full_name_en ?? '-' }}"
+            mother-life="{{ $info->mother_life ?? '-' }}"
+            mother-income="{{ $info->mother_income ?? '-' }}"
+            mother-career="{{ $info->mother_career->title ?? '-' }}"
+            relative-full-name-th="{{ $info->relative_full_name_th ?? '-' }}"
+            relative-full-name-en="{{ $info->relative_full_name_en ?? '-' }}"
+            relationship="{{ $info->relationship->title ?? '-' }}"
+            relative-life="{{ $info->relative_life ?? '-' }}"
+            relative-address="{{ $info->address ?? '-' }}"
+            relative-income="{{ $info->relative_income ?? '-' }}"
+            relative-career="{{ $info->relative_career->title ?? '-' }}"
+        />
     </div>
 </div>
 
