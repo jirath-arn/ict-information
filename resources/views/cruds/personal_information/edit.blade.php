@@ -47,12 +47,12 @@
                                 <div class="input-addon input-addon-append input-group-item">
                                     <span class="la la-calendar text-xl"></span>
                                 </div>
-                                @error('birth_date')
-                                    <small class="block mt-2 invalid-feedback">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
                             </div>
+                            @error('birth_date')
+                                <small class="block mt-2 invalid-feedback">
+                                    {{ $message }}
+                                </small>
+                            @enderror
                         </td>
                     </tr>
                     <tr>
