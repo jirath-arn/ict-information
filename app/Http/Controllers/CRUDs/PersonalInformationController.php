@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CRUDs;
 
 use App\Http\Controllers\Controller;
+use DateTime;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,10 @@ class PersonalInformationController extends Controller
         $countries = Country::orderBy('title', 'asc')->get();
         $info = $this->getInfo();
 
+        $birth_datetime = new DateTime($info->birth_date);
+        $thai_year = (int) $birth_datetime->format('Y') + 543;
+        $info->birth_date = $birth_datetime->format('d-m-').$thai_year;
+
         return view('cruds.personal_information.edit', compact('info', 'shirt_size', 'religion', 'countries', 'blood_type', 'scholarship'));
     }
 
@@ -61,6 +66,11 @@ class PersonalInformationController extends Controller
             'interest' => ['max:255'],
             'address' => ['required']
         ]);
+
+        $input = $request->all();
+        $birth_date = explode('-', $request->birth_date);
+        $input['birth_date'] = sprintf('%04d-%02d-%02d', $birth_date[2] - 543, $birth_date[1], $birth_date[0]);
+        $request->merge($input);
 
         $personal_information = PersonalInformation::where('user_id', '=', Auth::getId())->first();
         $personal_information->update($request->all());

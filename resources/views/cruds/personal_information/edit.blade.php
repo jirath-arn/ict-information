@@ -42,12 +42,17 @@
                             <label for="birth_date">วัน เดือน ปีเกิด</label>
                         </td>
                         <td class="w-3/4 text-left">
-                            <input id="birth_date" name="birth_date" type="text" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date', isset($info) ? $info->birth_date : '') }}" required autofocus />
-                            @error('birth_date')
-                                <small class="block mt-2 invalid-feedback">
-                                    {{ $message }}
-                                </small>
-                            @enderror
+                            <div class="input-group">
+                                <input id="birth_date" name="birth_date" type="text" class="form-control input-group-item @error('birth_date') is-invalid @enderror" value="{{ old('birth_date', isset($info) ? $info->birth_date : '') }}" readonly required autofocus />
+                                <div class="input-addon input-addon-append input-group-item">
+                                    <span class="la la-calendar text-xl"></span>
+                                </div>
+                                @error('birth_date')
+                                    <small class="block mt-2 invalid-feedback">
+                                        {{ $message }}
+                                    </small>
+                                @enderror
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -283,10 +288,35 @@
             $('#updateForm').submit();
         });
 
+        $.datetimepicker.setLocale('th');
+
+        const thaiYear = function (ct) {
+            let leap = 3;
+            let dayWeek = ["พฤ.", "ศ.", "ส.", "อา.", "จ.", "อ.", "พ."];
+            if (ct) {
+                const yearL = new Date(ct).getFullYear() - 543;
+                leap = (((yearL % 4 == 0) && (yearL % 100 != 0)) || (yearL % 400 == 0)) ? 2 : 3;
+                if (leap == 2) {
+                    dayWeek = ["ศ.", "ส.", "อา.", "จ.", "อ.", "พ.", "พฤ."];
+                }
+            }
+            this.setOptions({
+                i18n: {
+                    th: {
+                        dayOfWeek: dayWeek
+                    }
+                },
+                dayOfWeekStart: leap
+            });
+        }
+
         $('#birth_date').datetimepicker({
             timepicker: false,
+            maxDate: new Date(),
             format: 'd-m-Y',
             lang: 'th',
+            onChangeMonth: thaiYear,
+            onShow: thaiYear,
             yearOffset: 543,
             closeOnDateSelect: true
         });

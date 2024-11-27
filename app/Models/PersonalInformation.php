@@ -25,7 +25,11 @@ class PersonalInformation extends Model
         'weight',
         'height',
         'email',
+        'scholarship',
         'disability',
+        'blood_type',
+        'religion',
+        'shirt_size',
         'interest',
         'address'
     ];
