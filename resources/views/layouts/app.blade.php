@@ -131,14 +131,14 @@
                         <span class="title">แดชบอร์ด</span>
                     </a>
 
-                    <a href="{{ route('student_management.index') }}" class="link">
-                        <span class="icon la la-user"></span>
-                        <span class="title">จัดการข้อมูลนักศึกษา</span>
-                    </a>
-
                     <a href="{{ route('teacher_management.index') }}" class="link">
                         <span class="icon la la-user-tie"></span>
                         <span class="title">จัดการข้อมูลผู้สอน</span>
+                    </a>
+
+                    <a href="{{ route('student_management.index') }}" class="link">
+                        <span class="icon la la-user"></span>
+                        <span class="title">จัดการข้อมูลนักศึกษา</span>
                     </a>
                 @endif
             </div>
