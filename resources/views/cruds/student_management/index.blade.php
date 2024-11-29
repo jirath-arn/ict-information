@@ -50,6 +50,12 @@
                 จัดเรียงตาม
                 <span class="ml-3 la la-caret-down text-xl leading-none"></span>
             </button>
+
+            @if(Auth::getRoleEN() == Role::ADMIN)
+                <a href="#" class="btn btn_primary uppercase">
+                    เพิ่มนักศึกษาใหม่
+                </a>
+            @endif
         </div>
     </div>
 </div>
@@ -102,6 +108,7 @@
                                     $personal = $user->personal_information;
                                     $family = $user->family_information;
                                 @endphp
+
                                 <button
                                     data-toggle="modal"
                                     data-target="#detailModal"
@@ -161,6 +168,21 @@
                                 >
                                     <span class="la la-ellipsis-v"></span>
                                 </button>
+
+                                @if(Auth::getRoleEN() == Role::ADMIN)
+                                    <a href="#" class="btn btn-icon btn_outlined btn_secondary ml-2">
+                                        <span class="la la-edit"></span>
+                                    </a>
+
+                                    <form action="{{ route('student_management.destroy', $student->id).'?'.http_build_query(request()->query()) }}" method="POST" onsubmit="return confirm('ยืนยันลบข้อมูลหรือไม่ ?');">
+                                        @method('DELETE')
+                                        @csrf
+
+                                        <button type="submit" class="btn btn-icon btn_outlined btn_danger ml-2">
+                                            <span class="la la-trash-alt"></span>
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         </td>
                     </tr>

@@ -10,6 +10,7 @@ use App\Enums\Status;
 use App\Enums\Role;
 use App\Helpers\Auth;
 use App\Models\StudentInformation;
+use App\Models\User;
 
 class StudentManagementController extends Controller
 {
@@ -59,5 +60,18 @@ class StudentManagementController extends Controller
             ->paginate($per_page);
 
         return view('cruds.student_management.index', compact('students'));
+    }
+
+    public function destroy(Request $request, $id): RedirectResponse
+    {
+        $input = array_filter($request->all(), function($key) {
+            return in_array($key, ['page', 'search', 'per_page', 'sort_by', 'sort_direction']);
+        }, ARRAY_FILTER_USE_KEY);
+
+        $user = User::where('id', '=', $id)->first();
+        $user->status = Status::DISABLE;
+        $user->save();
+
+        return redirect()->route('student_management.index', $input);
     }
 }

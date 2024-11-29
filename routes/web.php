@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
 
         // Student Management.
         Route::get('student_management', [StudentManagementController::class, 'index'])->name('student_management.index');
+        Route::delete('student_management/{id}', [StudentManagementController::class, 'destroy'])->name('student_management.destroy');
 
         // Teacher Management.
         Route::get('teacher_management', [TeacherManagementController::class, 'index'])->name('teacher_management.index');
