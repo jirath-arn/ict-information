@@ -13,11 +13,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->enum('education', [Education::SECONDARY_3, Education::SECONDARY_6, Education::VOC_CERT, Education::HIGH_VOC_CERT, Education::BACHELORS_DEGREE, Education::MASTERS_DEGREE, Education::PHD]);
-            $table->string('name_school');
-            $table->string('qualification');
-            $table->year('graduate_year');
-            $table->decimal('gpa', total: 3, places: 2);
+            $table->enum('education', [Education::SECONDARY_3, Education::SECONDARY_6, Education::VOC_CERT, Education::HIGH_VOC_CERT, Education::BACHELORS_DEGREE, Education::MASTERS_DEGREE, Education::PHD])->nullable();
+            $table->string('name_school')->nullable();
+            $table->string('qualification')->nullable();
+            $table->year('graduate_year')->nullable();
+            $table->decimal('gpa', total: 3, places: 2)->nullable();
             $table->timestamps();
         });
     }
