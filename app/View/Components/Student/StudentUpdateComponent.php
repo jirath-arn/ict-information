@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Student;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\View\Component;
 
 class StudentUpdateComponent extends Component
 {
@@ -19,6 +19,6 @@ class StudentUpdateComponent extends Component
 
     public function render(): View
     {
-        return view('components.student-update-component');
+        return view('components.student.student-update-component');
     }
 }

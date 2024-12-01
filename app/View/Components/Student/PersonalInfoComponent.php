@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Student;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -26,6 +26,6 @@ class PersonalInfoComponent extends Component
 
     public function render(): View
     {
-        return view('components.personal-info-component');
+        return view('components.student.personal-info-component');
     }
 }
