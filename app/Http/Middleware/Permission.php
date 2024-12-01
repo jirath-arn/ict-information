@@ -28,15 +28,23 @@ class Permission
             'teacher_management'
         );
 
-        $path = explode('/', $request->path());
+        $paths = explode('/', $request->path());
+        $path_first = $paths[0];
+        $path_end = end($paths);
         $role = Auth::getRoleEN();
 
-//        if ($role == Role::STUDENT) {
-//            return redirect()->route('student_information.index');
-//
-//        } else if ($role == Role::ADMIN) {
-//            return redirect()->route('dashboard.index');
-//        }
+        if ($role == Role::STUDENT && !in_array($path_first, $student)) {
+            return redirect()->route('student_information.index');
+
+        } elseif ($role == Role::TEACHER && !in_array($path_first, $teacher)) {
+            return redirect()->route('dashboard.index');
+
+        } elseif ($role == Role::TEACHER && $path_first == 'student_management' && $path_end != 'student_management') {
+            return redirect()->route('dashboard.index');
+
+        } elseif ($role == Role::ADMIN && !in_array($path_first, $admin)) {
+            return redirect()->route('dashboard.index');
+        }
 
         return $next($request);
     }
