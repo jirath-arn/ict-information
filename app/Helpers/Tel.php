@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class Tel
 {
-    public static function format($tel): string
+    public static function format($tel): string|null
     {
         if ($tel != null) {
             $tel = str_split($tel);

@@ -14,18 +14,28 @@ class Date
         return date('d-m-') . ((int) date('Y') + 543);
     }
 
-    public static function convertFromADToBE($year): string
+    public static function convertFromADToBE($year): string|null
     {
-        return $year + 543;
+        if ($year != null) {
+            $year = $year + 543;
+        }
+
+        return $year;
     }
 
-    public static function convertFromBEToAD($year): string
+    public static function convertFromBEToAD($year): string|null
     {
-        return $year - 543;
+        if ($year != null) {
+            $year = $year - 543;
+        }
+
+        return $year;
     }
 
-    public static function convertToBirthDate($date): string
+    public static function convertToBirthDate($date): string|null
     {
+        if ($date == null) return $date;
+
         $date = new \DateTime($date);
         $day = $date->format('d');
         $month = [
@@ -42,7 +52,7 @@ class Date
             '11' => 'พฤศจิกายน',
             '12' => 'ธันวาคม'
         ][$date->format('m')];
-        $year = $date->format('Y') + 543;
+        $year = (int) $date->format('Y') + 543;
 
         return "$day $month $year";
     }

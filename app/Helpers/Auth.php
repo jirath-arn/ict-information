@@ -102,23 +102,25 @@ class Auth
         return $char;
     }
 
-    public static function formatPrefix($prefix): string
+    public static function formatPrefix($prefix): string|null
     {
-        if ($prefix == Prefix::MR)         $prefix = 'Mr.';
-        elseif ($prefix == Prefix::MISS)   $prefix = 'Miss';
-        else                               $prefix = 'Mrs.';
+        if ($prefix == Prefix::MR)          $prefix = 'Mr.';
+        elseif ($prefix == Prefix::MISS)    $prefix = 'Miss';
+        elseif ($prefix == Prefix::MRS)     $prefix = 'Mrs.';
+        else                                $prefix = null;
         return $prefix;
     }
 
-    public static function convertPrefixFromENToTH($prefix): string
+    public static function convertPrefixFromENToTH($prefix): string|null
     {
-        if ($prefix == Prefix::MR)         $prefix = 'นาย';
-        elseif ($prefix == Prefix::MISS)   $prefix = 'นางสาว';
-        else                               $prefix = 'นาง';
+        if ($prefix == Prefix::MR)          $prefix = 'นาย';
+        elseif ($prefix == Prefix::MISS)    $prefix = 'นางสาว';
+        elseif ($prefix == Prefix::MRS)     $prefix = 'นาง';
+        else                                $prefix = null;
         return $prefix;
     }
 
-    public static function convertEducationFromENToTH($education): string
+    public static function convertEducationFromENToTH($education): string|null
     {
         switch ($education) {
             case "SECONDARY_3":
@@ -142,27 +144,29 @@ class Auth
             case "PHD":
                 $education = 'ปริญญาเอก';
                 break;
+            default:
+                $education = null;
         }
         return $education;
     }
 
-    public static function convertScholarshipFromENToTH($scholarship): string
+    public static function convertScholarshipFromENToTH($scholarship): string|null
     {
-        if ($scholarship == Scholarship::YES)  $scholarship = 'ได้รับทุน';
-        else                                   $scholarship = 'ไม่ได้รับทุน';
-
+        if ($scholarship == Scholarship::YES)       $scholarship = 'ได้รับทุน';
+        elseif ($scholarship == Scholarship::NO)    $scholarship = 'ไม่ได้รับทุน';
+        else                                        $scholarship = null;
         return $scholarship;
     }
 
-    public static function convertTransferFromENToTH($transfer): string
+    public static function convertTransferFromENToTH($transfer): string|null
     {
-        if ($transfer == Transfer::NORMAL)  $transfer = 'ปกติ';
-        else                                $transfer = 'เทียบโอน';
-
+        if ($transfer == Transfer::NORMAL)          $transfer = 'ปกติ';
+        elseif ($transfer == Transfer::TRANSFER)    $transfer = 'เทียบโอน';
+        else                                        $transfer = null;
         return $transfer;
     }
 
-    public static function convertReligionFromENToTH($religion): string
+    public static function convertReligionFromENToTH($religion): string|null
     {
         switch ($religion) {
             case "BUDDHISM":
@@ -183,24 +187,26 @@ class Auth
             case "SIKHISM":
                 $religion = 'ซิกข์';
                 break;
+            default:
+                $religion = null;
         }
         return $religion;
     }
 
-    public static function convertIncomeFromENToTH($income): string
+    public static function convertIncomeFromENToTH($income): string|null
     {
-        if ($income == Income::HIGH)       $income = 'มากกว่า 300,000 บาทต่อปี';
-        elseif ($income == Income::MEDIUM) $income = '150,000 - 300,000 บาทต่อปี';
-        else                               $income = 'น้อยกว่า 150,000 บาทต่อปี';
-
+        if ($income == Income::HIGH)        $income = 'มากกว่า 300,000 บาทต่อปี';
+        elseif ($income == Income::MEDIUM)  $income = '150,000 - 300,000 บาทต่อปี';
+        elseif ($income == Income::LOW)     $income = 'น้อยกว่า 150,000 บาทต่อปี';
+        else                                $income = null;
         return $income;
     }
 
-    public static function convertLifeFromENToTH($life): string
+    public static function convertLifeFromENToTH($life): string|null
     {
-        if ($life == Life::YES)    $life = 'มีชีวิตอยู่';
-        else                       $life = 'เสียชีวิต';
-
+        if ($life == Life::YES)     $life = 'มีชีวิตอยู่';
+        elseif ($life == Life::NO)  $life = 'เสียชีวิต';
+        else                        $life = null;
         return $life;
     }
 }
