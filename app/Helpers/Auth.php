@@ -7,6 +7,7 @@ use App\Enums\Role;
 use App\Enums\Scholarship;
 use App\Enums\Income;
 use App\Enums\Life;
+use App\Enums\Transfer;
 
 class Auth
 {
@@ -151,6 +152,14 @@ class Auth
         else                                   $scholarship = 'ไม่ได้รับทุน';
 
         return $scholarship;
+    }
+
+    public static function convertTransferFromENToTH($transfer): string
+    {
+        if ($transfer == Transfer::NORMAL)  $transfer = 'ปกติ';
+        else                                $transfer = 'เทียบโอน';
+
+        return $transfer;
     }
 
     public static function convertReligionFromENToTH($religion): string

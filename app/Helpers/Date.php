@@ -9,6 +9,11 @@ class Date
         return date('Y');
     }
 
+    public static function getCurrentDateTH(): string
+    {
+        return date('d-m-') . ((int) date('Y') + 543);
+    }
+
     public static function convertFromADToBE($year): string
     {
         return $year + 543;

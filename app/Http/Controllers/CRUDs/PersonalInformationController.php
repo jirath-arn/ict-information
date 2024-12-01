@@ -34,6 +34,7 @@ class PersonalInformationController extends Controller
 
     public function edit(): View
     {
+        $current_date = Date::getCurrentDateTH();
         $scholarship = Scholarship::getKeys();
         $blood_type = BloodType::getKeys();
         $religion = Religion::getKeys();
@@ -45,7 +46,7 @@ class PersonalInformationController extends Controller
         $thai_year = (int) $birth_datetime->format('Y') + 543;
         $info->birth_date = $birth_datetime->format('d-m-').$thai_year;
 
-        return view('cruds.personal_information.edit', compact('info', 'shirt_size', 'religion', 'countries', 'blood_type', 'scholarship'));
+        return view('cruds.personal_information.edit', compact('info', 'shirt_size', 'religion', 'countries', 'blood_type', 'scholarship', 'current_date'));
     }
 
     public function update(Request $request): Response

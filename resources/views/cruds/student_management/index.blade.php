@@ -52,7 +52,7 @@
             </button>
 
             @if(Auth::getRoleEN() == Role::ADMIN)
-                <a href="#" class="btn btn_primary uppercase">
+                <a href="{{ route('student_management.create') }}" class="btn btn_primary uppercase">
                     เพิ่มนักศึกษาใหม่
                 </a>
             @endif
