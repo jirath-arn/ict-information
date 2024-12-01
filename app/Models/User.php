@@ -24,10 +24,13 @@ class User extends Authenticatable
         'password',
         'first_name_th',
         'last_name_th',
+        'prefix',
         'first_name_en',
         'last_name_en',
         'rmutto_email',
-        'tel'
+        'tel',
+        'role',
+        'status'
     ];
 
     protected $hidden = [
@@ -41,20 +44,6 @@ class User extends Authenticatable
             'role' => Role::class,
             'status' => Status::class
         ];
-    }
-
-    protected function first_name_en(): Attribute
-    {
-        return Attribute::make(
-            set: fn(string $value) => ucfirst(strtolower($value))
-        );
-    }
-
-    protected function last_name_en(): Attribute
-    {
-        return Attribute::make(
-            set: fn(string $value) => ucfirst(strtolower($value))
-        );
     }
 
     public function student_information(): HasOne

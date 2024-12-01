@@ -19,7 +19,8 @@ class StudentInformation extends Model
         'advisor_id',
         'student_status_code',
         'level',
-        'year'
+        'year',
+        'transfer'
     ];
 
     protected function casts(): array
