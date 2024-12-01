@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Enums\Role;
-use App\Helpers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
+use App\Enums\Role;
+use App\Helpers\Auth;
 
 class LoginController extends Controller
 {
@@ -38,10 +38,10 @@ class LoginController extends Controller
         if ($role == Role::STUDENT) {
             return '/student_information';
 
-        } else if ($role == Role::TEACHER) {
+        } elseif ($role == Role::TEACHER) {
             return '/dashboard';
 
-        } else if ($role == Role::ADMIN) {
+        } elseif ($role == Role::ADMIN) {
             return '/dashboard';
 
         } else {

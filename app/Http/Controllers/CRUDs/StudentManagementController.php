@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 use App\Enums\Scholarship;
 use App\Enums\BloodType;
 use App\Enums\Religion;
@@ -20,6 +21,9 @@ use App\Enums\Prefix;
 use App\Enums\Transfer;
 use App\Helpers\Auth;
 use App\Helpers\Date;
+use App\Models\EducationInformation;
+use App\Models\FamilyInformation;
+use App\Models\PersonalInformation;
 use App\Models\StudentInformation;
 use App\Models\User;
 use App\Models\FamilyStatus;
@@ -108,12 +112,59 @@ class StudentManagementController extends Controller
             'advisor_id' => ['required', 'exists:users,id'],
         ]);
 
-        // TODO.
+        $year = substr((string) ((int) Date::getCurrentYear() + 543), -2);
+        $first_name_en = strtolower(trim($request->first_name_en));
+        $last_name_en = strtolower(trim($request->last_name_en));
+        $short_name = $first_name_en.'.'.substr($last_name_en, 0, 3);
+        $number = User::selectRaw('SUBSTRING(username, 10, 3) as number')
+                        ->whereRaw('SUBSTRING(username, 3, 2) = ?', [$year])
+                        ->orderByRaw('username DESC')
+                        ->first()
+                        ->number ?? '000';
+
+        // User.
+        $user = new User();
+        $user->username = '01'.$year.'40664'.sprintf('%03d', ((int) $number + 1)).'-'.rand(0, 9);
+        $user->password = Hash::make($short_name);
+        $user->first_name_th = trim($request->first_name_th);
+        $user->last_name_th = trim($request->last_name_th);
+        $user->prefix = $request->prefix;
+        $user->first_name_en = ucfirst($first_name_en);
+        $user->last_name_en = ucfirst($last_name_en);
+        $user->rmutto_email = $short_name.'@rmutto.ac.th';
+        $user->role = Role::STUDENT;
+        $user->status = Status::ENABLE;
+        $user->save();
+
+        // Student.
+        $student = new StudentInformation();
+        $student->user_id = $user->id;
+        $student->advisor_id = $request->advisor_id;
+        $student->student_status_code = $request->student_status_code;
+        $student->level = $request->level;
+        $student->year = $request->year;
+        $student->transfer = $request->transfer;
+        $student->save();
+
+        // Personal.
+        $personal = new PersonalInformation();
+        $personal->user_id = $user->id;
+        $personal->save();
+
+        // Family.
+        $family = new FamilyInformation();
+        $family->user_id = $user->id;
+        $family->save();
+
+        // Education.
+        $education = new EducationInformation();
+        $education->user_id = $user->id;
+        $education->save();
 
         return redirect()->route('student_management.index');
     }
 
-    public function edit(): View
+    public function edit($id): View
     {
         // Student.
 
@@ -137,7 +188,7 @@ class StudentManagementController extends Controller
         $education = Education::getKeys();
 
         return view(
-            'cruds.student_management.create',
+            'cruds.student_management.edit',
             compact(
                 'education',
                 'current_year',
@@ -154,6 +205,13 @@ class StudentManagementController extends Controller
                 'countries'
             )
         );
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        // TODO.
+
+        return redirect()->route('student_management.index');
     }
 
     public function destroy(Request $request, $id): RedirectResponse

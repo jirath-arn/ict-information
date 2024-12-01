@@ -36,11 +36,11 @@ class EducationInformationController extends Controller
     {
         $current_year = Date::getCurrentYear();
         $request->validate([
-            'education' => ['required', Rule::in(Education::getKeys())],
-            'name_school' => ['required'],
-            'qualification' => ['required'],
-            'graduate_year' => ['required', 'integer', 'between:' . ($current_year - 9) . ',' . $current_year],
-            'gpa' => ['required', 'numeric', 'between:0,4']
+            'education' => ['nullable', Rule::in(Education::getKeys())],
+            'name_school' => ['nullable'],
+            'qualification' => ['nullable'],
+            'graduate_year' => ['nullable', 'integer', 'between:' . ($current_year - 9) . ',' . $current_year],
+            'gpa' => ['nullable', 'numeric', 'between:0,4']
         ]);
 
         $education_information = EducationInformation::where('user_id', '=', Auth::getId())->first();

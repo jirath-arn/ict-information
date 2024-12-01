@@ -17,7 +17,7 @@ class ProfileController extends Controller
 {
     public function index(): View
     {
-        $user = User::where('users.id', '=', Auth::getId())->first();
+        $user = User::where('id', '=', Auth::getId())->first();
 
         $info = new \stdClass();
         $info->username = $user->username;
@@ -29,12 +29,26 @@ class ProfileController extends Controller
         return view('cruds.profile.index', compact('info'));
     }
 
-    public function password(): View
+    public function edit(): View
     {
-        return view('cruds.profile.password');
+        // TODO.
+
+        return view('cruds.profile.edit');
     }
 
-    public function update(Request $request): Response|RedirectResponse
+    public function update(Request $request): RedirectResponse
+    {
+        // TODO.
+
+        return redirect()->route('profile.index');
+    }
+
+    public function password(): View
+    {
+        return view('cruds.profile.password.index');
+    }
+
+    public function password_update(Request $request): Response|RedirectResponse
     {
         $request->validate([
             'old_password' => ['required', 'string', 'min:8'],
@@ -42,7 +56,7 @@ class ProfileController extends Controller
             'new_password_confirmation' => ['required', 'string', 'min:8', 'same:new_password']
         ]);
 
-        $user = User::where('users.id', '=', Auth::getId())->first();
+        $user = User::where('id', '=', Auth::getId())->first();
 
         if (!Hash::check($request->old_password, $user->password)) {
             throw ValidationException::withMessages([

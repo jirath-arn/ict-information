@@ -43,6 +43,7 @@ class DashboardController extends Controller
     {
         $shirt_size = new \stdClass();
         $shirt_size->labels = ShirtSize::getKeys();
+        $shirt_size->labels[] = 'ไม่ระบุ';
         $shirt_size->data = array_fill(0, count($shirt_size->labels), 0);
 
         $shirt_group = PersonalInformation::selectRaw('personal_information.shirt_size as shirt_size, COUNT(*) as count')
@@ -56,7 +57,7 @@ class DashboardController extends Controller
         $shirt_group = $shirt_group->groupBy('personal_information.shirt_size')->get();
 
         foreach($shirt_group as $row) {
-            $idx = array_search($row->shirt_size->value, $shirt_size->labels);
+            $idx = array_search($row->shirt_size->value ?? 'ไม่ระบุ', $shirt_size->labels);
             $shirt_size->data[$idx] = $row->count;
         }
 
@@ -67,6 +68,7 @@ class DashboardController extends Controller
     {
         $religion = new \stdClass();
         $religion->labels = Religion::getKeys();
+        $religion->labels[] = 'ไม่ระบุ';
         $religion->data = array_fill(0, count($religion->labels), 0);
 
         $religion_group = PersonalInformation::selectRaw('personal_information.religion as religion, COUNT(*) as count')
@@ -80,12 +82,12 @@ class DashboardController extends Controller
         $religion_group = $religion_group->groupBy('personal_information.religion')->get();
 
         foreach($religion_group as $row) {
-            $idx = array_search($row->religion->value, $religion->labels);
+            $idx = array_search($row->religion->value ?? 'ไม่ระบุ', $religion->labels);
             $religion->data[$idx] = $row->count;
         }
 
         for($i = 0; $i < count($religion->labels); $i++) {
-            $religion->labels[$i] = Auth::convertReligionFromENToTH($religion->labels[$i]);
+            $religion->labels[$i] = Auth::convertReligionFromENToTH($religion->labels[$i]) ?? 'ไม่ระบุ';
         }
 
         return $religion;
@@ -95,6 +97,7 @@ class DashboardController extends Controller
     {
         $education = new \stdClass();
         $education->labels = Education::getKeys();
+        $education->labels[] = 'ไม่ระบุ';
         $education->data = array_fill(0, count($education->labels), 0);
 
         $education_group = EducationInformation::selectRaw('education_information.education as education, COUNT(*) as count')
@@ -108,12 +111,12 @@ class DashboardController extends Controller
         $education_group = $education_group->groupBy('education_information.education')->get();
 
         foreach($education_group as $row) {
-            $idx = array_search($row->education->value, $education->labels);
+            $idx = array_search($row->education->value ?? 'ไม่ระบุ', $education->labels);
             $education->data[$idx] = $row->count;
         }
 
         for($i = 0; $i < count($education->labels); $i++) {
-            $education->labels[$i] = Auth::convertEducationFromENToTH($education->labels[$i]);
+            $education->labels[$i] = Auth::convertEducationFromENToTH($education->labels[$i]) ?? 'ไม่ระบุ';
         }
 
         return $education;

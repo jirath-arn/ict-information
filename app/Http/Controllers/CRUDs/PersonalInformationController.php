@@ -52,20 +52,20 @@ class PersonalInformationController extends Controller
     public function update(Request $request): Response
     {
         $request->validate([
-            'birth_date' => ['required'],
-            'weight' => ['required', 'integer', 'between:20,200'],
-            'height' => ['required', 'integer', 'between:100,300'],
-            'email' => ['email:rfc,dns', 'max:70'],
-            'tel' => ['max:10'],
+            'birth_date' => ['nullable'],
+            'weight' => ['nullable', 'integer', 'between:20,200'],
+            'height' => ['nullable', 'integer', 'between:100,300'],
+            'email' => ['nullable', 'email:rfc,dns', 'max:70'],
+            'tel' => ['nullable', 'max:10'],
             'scholarship' => ['required', Rule::in(Scholarship::getKeys())],
-            'disability' => ['max:255'],
-            'blood_type' => ['required', Rule::in(BloodType::getKeys())],
-            'nationality' => ['required', 'exists:countries,code'],
-            'ethnicity' => ['required', 'exists:countries,code'],
-            'religion' => ['required', Rule::in(Religion::getKeys())],
-            'shirt_size' => ['required', Rule::in(ShirtSize::getKeys())],
-            'interest' => ['max:255'],
-            'address' => ['required']
+            'disability' => ['nullable', 'max:255'],
+            'blood_type' => ['nullable', Rule::in(BloodType::getKeys())],
+            'nationality' => ['nullable', 'exists:countries,code'],
+            'ethnicity' => ['nullable', 'exists:countries,code'],
+            'religion' => ['nullable', Rule::in(Religion::getKeys())],
+            'shirt_size' => ['nullable', Rule::in(ShirtSize::getKeys())],
+            'interest' => ['nullable', 'max:255'],
+            'address' => ['nullable']
         ]);
 
         $input = $request->all();
@@ -92,13 +92,13 @@ class PersonalInformationController extends Controller
 
         // Nationality.
         $nationality_info = new \stdClass();
-        $nationality_info->code = $nationality->code;
-        $nationality_info->title = $nationality->title;
+        $nationality_info->code = $nationality->code ?? null;
+        $nationality_info->title = $nationality->title ?? null;
 
         // Ethnicity.
         $ethnicity_info = new \stdClass();
-        $ethnicity_info->code = $ethnicity->code;
-        $ethnicity_info->title = $ethnicity->title;
+        $ethnicity_info->code = $ethnicity->code ?? null;
+        $ethnicity_info->title = $ethnicity->title ?? null;
 
         // Personal Information.
         $info = new \stdClass();
