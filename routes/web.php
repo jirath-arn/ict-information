@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
     // Profile.
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('profile/password', [ProfileController::class, 'password'])->name('profile.password');
-    Route::post('profile/password', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('profile/password/update', [ProfileController::class, 'password_update'])->name('profile.password_update');
 
     // Permission.
     Route::middleware(['permission'])->group(function () {
@@ -56,9 +56,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('student_management', [StudentManagementController::class, 'index'])->name('student_management.index');
         Route::get('student_management/create', [StudentManagementController::class, 'create'])->name('student_management.create');
         Route::post('student_management/store', [StudentManagementController::class, 'store'])->name('student_management.store');
+        Route::get('student_management/{id}/edit', [StudentManagementController::class, 'edit'])->name('student_management.edit');
+        Route::put('student_management/{id}/update', [StudentManagementController::class, 'update'])->name('student_management.update');
         Route::delete('student_management/{id}', [StudentManagementController::class, 'destroy'])->name('student_management.destroy');
 
         // Teacher Management.
         Route::get('teacher_management', [TeacherManagementController::class, 'index'])->name('teacher_management.index');
+        Route::get('teacher_management/create', [TeacherManagementController::class, 'create'])->name('teacher_management.create');
+        Route::post('teacher_management/store', [TeacherManagementController::class, 'store'])->name('teacher_management.store');
+        Route::get('teacher_management/{id}/edit', [TeacherManagementController::class, 'edit'])->name('teacher_management.edit');
+        Route::put('teacher_management/{id}/update', [TeacherManagementController::class, 'update'])->name('teacher_management.update');
+        Route::delete('teacher_management/{id}', [TeacherManagementController::class, 'destroy'])->name('teacher_management.destroy');
+
+        // Profile.
+        Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
     });
 });
