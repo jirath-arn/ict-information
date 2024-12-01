@@ -30,7 +30,7 @@
 
 <div class="card">
     <div class="overflow-x-auto p-10">
-        <form id="updateForm" action="{{ route('profile.update') }}" method="POST">
+        <form id="updateForm" action="{{ route('profile.password_update') }}" method="POST" onsubmit="return confirm('ยืนยันบันทึกข้อมูลหรือไม่ ?');">
             @csrf
 
             <table class="table table_borderless w-full">

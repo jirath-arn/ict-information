@@ -26,10 +26,10 @@
 
 <div class="card">
     <div class="overflow-x-auto p-10">
-        <form id="updateForm" action="{{ route('personal_information.update') }}" method="POST">
+        <form id="updateForm" action="{{ route('personal_information.update') }}" method="POST" onsubmit="return confirm('ยืนยันบันทึกข้อมูลหรือไม่ ?');">
             @csrf
 
-            <x-personal-update-component
+            <x-student.personal-update-component
                 :info="$info"
                 :current-date="$current_date"
                 :scholarship="$scholarship"

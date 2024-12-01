@@ -170,7 +170,7 @@
                                 </button>
 
                                 @if(Auth::getRoleEN() == Role::ADMIN)
-                                    <a href="#" class="btn btn-icon btn_outlined btn_secondary ml-2">
+                                    <a href="{{ route('student_management.edit', $student->id) }}" class="btn btn-icon btn_outlined btn_secondary ml-2">
                                         <span class="la la-edit"></span>
                                     </a>
 
@@ -194,7 +194,7 @@
 
 {{-- Pagination --}}
 <div>
-    {{ $students->appends(request()->query())->onEachSide(1)->links('components.paginator') }}
+    {{ $students->appends(request()->query())->onEachSide(1)->links('components.student.paginator') }}
 </div>
 
 {{-- Modal --}}
@@ -281,7 +281,7 @@
             const m = $(this);
             $('.modal-title').text(m.data('full_name_th'));
             $('#studentContent').html(`
-                <x-student-info-component
+                <x-student.student-info-component
                     student-id="${m.data(`student_id`)}"
                     full-name-with-prefix-th="${m.data(`full_name_with_prefix_th`)}"
                     full-name-with-prefix-en="${m.data(`full_name_with_prefix_en`)}"
@@ -295,7 +295,7 @@
                 />`
             );
             $('#personalContent').html(`
-                <x-personal-info-component
+                <x-student.personal-info-component
                     birth-date="${m.data(`birth_date`)}"
                     weight="${m.data(`weight`)}"
                     height="${m.data(`height`)}"
@@ -313,7 +313,7 @@
                 />`
             );
             $('#familyContent').html(`
-                <x-family-info-component
+                <x-student.family-info-component
                     family-status="${m.data(`family_status`)}"
                     father-full-name-th="${m.data(`father_full_name_th`)}"
                     father-full-name-en="${m.data(`father_full_name_en`)}"
@@ -335,7 +335,7 @@
                 />`
             );
             $('#educationContent').html(`
-                <x-education-info-component
+                <x-student.education-info-component
                     education="${m.data(`education`)}"
                     name-school="${m.data(`name_school`)}"
                     qualification="${m.data(`qualification`)}"

@@ -21,12 +21,12 @@
 
 <div class="card">
     <div class="overflow-x-auto p-10">
-        <x-education-info-component
-            education="{{ $info->education ?? '-' }}"
-            name-school="{{ $info->name_school ?? '-' }}"
-            qualification="{{ $info->qualification ?? '-' }}"
-            graduate-year="{{ $info->graduate_year ?? '-' }}"
-            gpa="{{ $info->gpa ?? '-' }}"
+        <x-student.education-info-component
+            :education="$info->education"
+            :name-school="$info->name_school"
+            :qualification="$info->qualification"
+            :graduate-year="$info->graduate_year"
+            :gpa="$info->gpa"
         />
     </div>
 </div>

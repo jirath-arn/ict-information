@@ -7,14 +7,16 @@
         <tr>
             <td class="w-1/4 text-right font-bold">
                 <label for="birth_date">วัน เดือน ปีเกิด</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="w-3/4 text-left">
                 <div class="input-group">
-                    <input id="birth_date" name="birth_date" type="text" class="form-control input-group-item @error('birth_date') is-invalid @enderror" value="{{ old('birth_date', $info->birth_date ?? $currentDate) }}" readonly required autofocus />
+                    <input id="birth_date" name="birth_date" type="text" class="form-control input-group-item @error('birth_date') is-invalid @enderror" value="{{ old('birth_date', $info->birth_date ?? $currentDate) }}" readonly autofocus />
                     <div class="input-addon input-addon-append input-group-item">
                         <span class="la la-calendar text-xl"></span>
                     </div>
                 </div>
+
                 @error('birth_date')
                     <small class="block mt-2 invalid-feedback">
                         {{ $message }}
@@ -25,9 +27,10 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="weight">น้ำหนัก</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
-                <input id="weight" name="weight" type="number" min="20" max="200" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight', $info->weight ?? 50) }}" required />
+                <input id="weight" name="weight" type="number" min="20" max="200" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight', $info->weight ?? 50) }}" />
                 @error('weight')
                     <small class="block mt-2 invalid-feedback">
                         {{ $message }}
@@ -38,9 +41,10 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="height">ส่วนสูง</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
-                <input id="height" name="height" type="number" min="100" max="300" class="form-control @error('height') is-invalid @enderror" value="{{ old('height', $info->height ?? 160) }}" required />
+                <input id="height" name="height" type="number" min="100" max="300" class="form-control @error('height') is-invalid @enderror" value="{{ old('height', $info->height ?? 160) }}" />
                 @error('height')
                     <small class="block mt-2 invalid-feedback">
                         {{ $message }}
@@ -51,6 +55,7 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="email">อีเมล</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $info->email ?? '') }}" maxlength="70" />
@@ -64,6 +69,7 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="tel">เบอร์โทรศัพท์มือถือ</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <input id="tel" name="tel" type="tel" pattern="[0-9]{10}" maxlength="10" class="form-control @error('tel') is-invalid @enderror" value="{{ old('tel', $info->tel ?? '') }}" />
@@ -81,6 +87,8 @@
             <td class="text-left">
                 <div class="custom-select">
                     <select id="scholarship" name="scholarship" class="form-control @error('scholarship') is-invalid @enderror" required>
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($scholarship as $key)
                             <option value="{{ $key }}" @if (isset($info->scholarship) && $key == $info->scholarship) selected @endif>{{ Auth::convertScholarshipFromENToTH($key) }}</option>
                         @endforeach
@@ -98,6 +106,7 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="disability">ความพิการ</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <input id="disability" name="disability" type="text" class="form-control @error('disability') is-invalid @enderror" value="{{ old('disability', $info->disability ?? '') }}" />
@@ -111,10 +120,13 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="blood_type">หมู่โลหิต</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <div class="custom-select">
-                    <select id="blood_type" name="blood_type" class="form-control @error('blood_type') is-invalid @enderror" required>
+                    <select id="blood_type" name="blood_type" class="form-control @error('blood_type') is-invalid @enderror">
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($bloodType as $key)
                             <option value="{{ $key }}" @if (isset($info->blood_type) && $key == $info->blood_type) selected @endif>{{ $key }}</option>
                         @endforeach
@@ -132,10 +144,13 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="nationality">สัญชาติ</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <div class="custom-select">
-                    <select id="nationality" name="nationality" class="form-control @error('nationality') is-invalid @enderror" required>
+                    <select id="nationality" name="nationality" class="form-control @error('nationality') is-invalid @enderror">
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($countries as $country)
                             <option value="{{ $country->code }}" @if (isset($info->nationality->code) && $country->code == $info->nationality->code) selected @endif>{{ $country->title }}</option>
                         @endforeach
@@ -153,10 +168,13 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="ethnicity">เชื้อชาติ</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <div class="custom-select">
-                    <select id="ethnicity" name="ethnicity" class="form-control @error('ethnicity') is-invalid @enderror" required>
+                    <select id="ethnicity" name="ethnicity" class="form-control @error('ethnicity') is-invalid @enderror">
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($countries as $country)
                             <option value="{{ $country->code }}" @if (isset($info->ethnicity->code) && $country->code == $info->ethnicity->code) selected @endif>{{ $country->title }}</option>
                         @endforeach
@@ -174,10 +192,13 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="religion">ศาสนา</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <div class="custom-select">
-                    <select id="religion" name="religion" class="form-control @error('religion') is-invalid @enderror" required>
+                    <select id="religion" name="religion" class="form-control @error('religion') is-invalid @enderror">
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($religion as $key)
                             <option value="{{ $key }}" @if (isset($info->religion) && $key == $info->religion) selected @endif>{{ Auth::convertReligionFromENToTH($key) }}</option>
                         @endforeach
@@ -195,10 +216,13 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="shirt_size">ขนาดเสื้อกิจกรรม</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <div class="custom-select">
-                    <select id="shirt_size" name="shirt_size" class="form-control @error('shirt_size') is-invalid @enderror" required>
+                    <select id="shirt_size" name="shirt_size" class="form-control @error('shirt_size') is-invalid @enderror">
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($shirtSize as $key)
                             <option value="{{ $key }}" @if (isset($info->shirt_size) && $key == $info->shirt_size) selected @endif>{{ $key }}</option>
                         @endforeach
@@ -216,6 +240,7 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="interest">ความถนัด ความสนใจพิเศษ</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
                 <input id="interest" name="interest" type="text" class="form-control @error('interest') is-invalid @enderror" value="{{ old('interest', $info->interest ?? '') }}" />
@@ -229,9 +254,10 @@
         <tr>
             <td class="text-right font-bold">
                 <label for="address">ที่อยู่</label>
+                <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
-                <textarea id="address" name="address" rows="3" class="form-control @error('address') is-invalid @enderror" required>{{ old('address', $info->address ?? '') }}</textarea>
+                <textarea id="address" name="address" rows="3" class="form-control @error('address') is-invalid @enderror">{{ old('address', $info->address ?? '') }}</textarea>
                 @error('address')
                     <small class="block mt-2 invalid-feedback">
                         {{ $message }}

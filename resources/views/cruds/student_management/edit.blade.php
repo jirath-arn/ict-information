@@ -42,7 +42,7 @@
                 </nav>
                 <div class="collapsible open mt-5">
                     <div id="studentContent">
-                        <x-student-update-component />
+{{--                        <x-student-update-component />--}}
                     </div>
                     <div id="personalContent" class="hidden">
                         <x-personal-update-component

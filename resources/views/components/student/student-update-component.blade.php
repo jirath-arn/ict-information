@@ -25,6 +25,8 @@
             <td class="w-3/4 text-left">
                 <div class="custom-select">
                     <select id="prefix" name="prefix" class="form-control @error('prefix') is-invalid @enderror" required autofocus>
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($prefix as $key)
                             <option value="{{ $key }}" @if (isset($info->prefix) && $key == $info->prefix) selected @endif>{{ Auth::convertPrefixFromENToTH($key) }}</option>
                         @endforeach
@@ -108,6 +110,8 @@
             <td class="text-left">
                 <div class="custom-select">
                     <select id="student_status_code" name="student_status_code" class="form-control @error('student_status_code') is-invalid @enderror" required>
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($studentStatus as $e)
                             <option value="{{ $e->code }}" @if (isset($info->student_status->code) && $e->code == $info->student_status->code) selected @endif>{{ $e->title }}</option>
                         @endforeach
@@ -129,6 +133,8 @@
             <td class="text-left">
                 <div class="custom-select">
                     <select id="level" name="level" class="form-control @error('level') is-invalid @enderror" required>
+                        <option>ตัวเลือก...</option>
+
                         @for ($level = 1; $level <= 8; $level++)
                             <option value="{{ $level }}" @if (isset($info->level) && $level == $info->level) selected @endif>{{ $level }}</option>
                         @endfor
@@ -150,6 +156,8 @@
             <td class="text-left">
                 <div class="custom-select">
                     <select id="year" name="year" class="form-control @error('year') is-invalid @enderror" required>
+                        <option>ตัวเลือก...</option>
+
                         @if($path != 'create')
                             @for ($year = $currentYear; $year > $currentYear - 10; $year--)
                                 <option value="{{ $year }}" @if (isset($info->year) && $year == $info->year) selected @endif>{{ Date::convertFromADToBE($year) }}</option>
@@ -175,6 +183,8 @@
             <td class="text-left">
                 <div class="custom-select">
                     <select id="transfer" name="transfer" class="form-control @error('transfer') is-invalid @enderror" required>
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($transfer as $key)
                             <option value="{{ $key }}" @if (isset($info->transfer) && $key == $info->transfer) selected @endif>{{ Auth::convertTransferFromENToTH($key) }}</option>
                         @endforeach
@@ -196,8 +206,10 @@
             <td class="text-left">
                 <div class="custom-select">
                     <select id="advisor_id" name="advisor_id" class="form-control @error('advisor_id') is-invalid @enderror" required>
+                        <option>ตัวเลือก...</option>
+
                         @foreach ($advisors as $e)
-                            <option value="{{ $e->id }}" @if (isset($info->advisor_id) && $e->id == $info->advisor_id) selected @endif>{{ $e->first_name_th.' '.$e->last_name_th }}</option>
+                            <option value="{{ $e->id }}" @if (isset($info->advisor->id) && $e->id == $info->advisor->id) selected @endif>{{ $e->first_name_th.' '.$e->last_name_th }}</option>
                         @endforeach
                     </select>
                     <div class="custom-select-icon la la-caret-down"></div>
