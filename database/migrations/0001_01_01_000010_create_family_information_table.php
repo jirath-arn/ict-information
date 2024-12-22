@@ -40,7 +40,7 @@ return new class extends Migration
             $table->string('relative_first_name_en', length: 50)->nullable();
             $table->string('relative_last_name_en', length: 50)->nullable();
             $table->enum('relative_life', [Life::YES, Life::NO])->nullable();
-            $table->string('address')->nullable();
+            $table->string('relative_address')->nullable();
             $table->enum('relative_income', [Income::LOW, Income::MEDIUM, Income::HIGH])->nullable();
             $table->bigInteger('relationship_id')->unsigned()->nullable();
             $table->foreign('relationship_id')->references('id')->on('relationships');
