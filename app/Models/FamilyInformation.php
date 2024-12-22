@@ -38,7 +38,7 @@ class FamilyInformation extends Model
         'relative_last_name_en',
         'relative_life',
         'relative_income',
-        'address',
+        'relative_address',
         'relationship_id',
         'relative_career_id'
     ];
