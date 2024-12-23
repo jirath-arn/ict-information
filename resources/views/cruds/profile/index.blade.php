@@ -19,8 +19,15 @@
     </section>
 
     <div class="flex flex-wrap gap-2 items-center ml-auto mb-5">
+        @if(Auth::getRoleEN() == Role::ADMIN)
+            <a href="{{ route('profile.edit') }}" class="btn btn_primary uppercase">
+                <span class="la la-edit text-xl leading-none mr-2"></span>
+                แก้ไขข้อมูล
+            </a>
+        @endif
+
         <a href="{{ route('profile.password') }}" class="btn btn_primary uppercase">
-            <span class="la la-edit text-xl leading-none mr-2"></span>
+            <span class="la la-key text-xl leading-none mr-2"></span>
             เปลี่ยนรหัสผ่าน
         </a>
     </div>
@@ -34,8 +41,10 @@
                     <td class="w-1/4 text-right font-bold">
                         @if(Auth::getRoleEN() == Role::STUDENT)
                             รหัสนักศึกษา
-                        @else
+                        @elseif (Auth::getRoleEN() == Role::TEACHER)
                             รหัสพนักงาน
+                        @else
+                            ผู้ดูแลระบบ
                         @endif
                     </td>
                     <td class="w-3/4 text-left">
