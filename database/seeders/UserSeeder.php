@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'username' => '016340664012-7',
+                'username' => '000000001',
                 'password' => Hash::make($password),
                 'first_name_th' => 'ณัฐพงศ์',
                 'last_name_th' => 'เจริญ',
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'username' => '016340664013-7',
+                'username' => '000000002',
                 'password' => Hash::make($password),
                 'first_name_th' => 'พัชร',
                 'last_name_th' => 'นพรัตน์',
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'username' => '016340664014-7',
+                'username' => '000000003',
                 'password' => Hash::make($password),
                 'first_name_th' => 'กัญญา',
                 'last_name_th' => 'รุ่งวงศ์',
