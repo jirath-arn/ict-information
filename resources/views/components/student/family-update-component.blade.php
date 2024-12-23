@@ -405,12 +405,12 @@
         </tr>
         <tr>
             <td class="text-right font-bold">
-                <label for="address">ที่อยู่</label>
+                <label for="relative_address">ที่อยู่</label>
                 <p class="text-xs font-light mt-0.5">(ไม่จำเป็น)</p>
             </td>
             <td class="text-left">
-                <textarea id="address" name="address" rows="3" class="form-control @error('address') is-invalid @enderror">{{ old('address', $info->address ?? '') }}</textarea>
-                @error('address')
+                <textarea id="relative_address" name="relative_address" rows="3" class="form-control @error('relative_address') is-invalid @enderror">{{ old('relative_address', $info->relative_address ?? '') }}</textarea>
+                @error('relative_address')
                     <small class="block mt-2 invalid-feedback">
                         {{ $message }}
                     </small>

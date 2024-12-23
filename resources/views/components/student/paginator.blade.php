@@ -41,10 +41,10 @@
     <div class="flex items-center gap-2 p-5 border-t lg:border-t-0 lg:border-l border-divider">
         <div id="listSizeTooltip" class="hidden">
             <div class="dropdown-menu">
-                <a href="{{ route('student_management.index', array_merge(request()->query(), ['per_page' => 5])) }}">5</a>
-                <a href="{{ route('student_management.index', array_merge(request()->query(), ['per_page' => 10])) }}">10</a>
-                <a href="{{ route('student_management.index', array_merge(request()->query(), ['per_page' => 15])) }}">15</a>
-                <a href="{{ route('student_management.index', array_merge(request()->query(), ['per_page' => 20])) }}">20</a>
+                <a href="{{ route('student_management.index', array_merge(request()->query(), ['per_page' => 5, 'page' => 1])) }}">5</a>
+                <a href="{{ route('student_management.index', array_merge(request()->query(), ['per_page' => 10, 'page' => 1])) }}">10</a>
+                <a href="{{ route('student_management.index', array_merge(request()->query(), ['per_page' => 15, 'page' => 1])) }}">15</a>
+                <a href="{{ route('student_management.index', array_merge(request()->query(), ['per_page' => 20, 'page' => 1])) }}">20</a>
             </div>
         </div>
 
