@@ -107,6 +107,21 @@
                                     $education = $user->education_information;
                                     $personal = $user->personal_information;
                                     $family = $user->family_information;
+
+                                    $father_full_name_th = (isset($family->father_first_name_th) && isset($family->father_last_name_th))
+                                        ? $family->father_first_name_th.' '.$family->father_last_name_th : '-';
+                                    $father_full_name_en = (isset($family->father_first_name_en) && isset($family->father_last_name_en))
+                                        ? $family->father_first_name_en.' '.$family->father_last_name_en : '-';
+
+                                    $mother_full_name_th = (isset($family->mother_first_name_th) && isset($family->mother_last_name_th))
+                                        ? $family->mother_first_name_th.' '.$family->mother_last_name_th : '-';
+                                    $mother_full_name_en = (isset($family->mother_first_name_en) && isset($family->mother_last_name_en))
+                                        ? $family->mother_first_name_en.' '.$family->mother_last_name_en : '-';
+
+                                    $relative_full_name_th = (isset($family->relative_first_name_th) && isset($family->relative_last_name_th))
+                                        ? $family->relative_first_name_th.' '.$family->relative_last_name_th : '-';
+                                    $relative_full_name_en = (isset($family->relative_first_name_en) && isset($family->relative_last_name_en))
+                                        ? $family->relative_first_name_en.' '.$family->relative_last_name_en : '-';
                                 @endphp
 
                                 <button
@@ -114,24 +129,24 @@
                                     data-target="#detailModal"
                                     class="btn btn-icon btn_outlined btn_secondary"
 
-                                    data-student_id="{{ $student->username ?? '-' }}"
-                                    data-full_name_th="{{ $student->first_name_th.' '.$student->last_name_th ?? '-' }}"
-                                    data-full_name_with_prefix_th="{{ Auth::convertPrefixFromENToTH($student->prefix).' '.$student->first_name_th.' '.$student->last_name_th ?? '-' }}"
-                                    data-full_name_with_prefix_en="{{ Auth::formatPrefix($student->prefix).' '.$student->first_name_en.' '.$student->last_name_en ?? '-' }}"
-                                    data-rmutto_email="{{ $student->rmutto_email ?? '-' }}"
-                                    data-student_status="{{ $student->student_status->title ?? '-' }}"
-                                    data-level="{{ $student->level ?? '-' }}"
-                                    data-year="{{ Date::convertFromADToBE($student->year) ?? '-' }}"
-                                    data-advisor_full_name_with_prefix_th="{{ Auth::convertPrefixFromENToTH($advisor->prefix).' '.$advisor->first_name_th.' '.$advisor->last_name_th ?? '-' }}"
+                                    data-student_id="{{ $student->username }}"
+                                    data-full_name_th="{{ $student->first_name_th.' '.$student->last_name_th }}"
+                                    data-full_name_with_prefix_th="{{ Auth::convertPrefixFromENToTH($student->prefix).' '.$student->first_name_th.' '.$student->last_name_th }}"
+                                    data-full_name_with_prefix_en="{{ Auth::formatPrefix($student->prefix).' '.$student->first_name_en.' '.$student->last_name_en }}"
+                                    data-rmutto_email="{{ $student->rmutto_email }}"
+                                    data-student_status="{{ $student->student_status->title }}"
+                                    data-level="{{ $student->level }}"
+                                    data-year="{{ Date::convertFromADToBE($student->year) }}"
+                                    data-advisor_full_name_with_prefix_th="{{ Auth::convertPrefixFromENToTH($advisor->prefix).' '.$advisor->first_name_th.' '.$advisor->last_name_th }}"
                                     data-advisor_tel="{{ Tel::format($advisor->tel) ?? '-' }}"
-                                    data-advisor_rmutto_email="{{ $advisor->rmutto_email ?? '-' }}"
+                                    data-advisor_rmutto_email="{{ $advisor->rmutto_email }}"
 
                                     data-birth_date="{{ Date::convertToBirthDate($personal->birth_date) ?? '-' }}"
                                     data-weight="{{ $personal->weight ?? '-' }}"
                                     data-height="{{ $personal->height ?? '-' }}"
                                     data-email="{{ $personal->email ?? '-' }}"
                                     data-tel="{{ Tel::format($user->tel) ?? '-' }}"
-                                    data-scholarship="{{ Auth::convertScholarshipFromENToTH($personal->scholarship) ?? '-' }}"
+                                    data-scholarship="{{ Auth::convertScholarshipFromENToTH($personal->scholarship) }}"
                                     data-disability="{{ $personal->disability ?? '-' }}"
                                     data-blood_type="{{ $personal->blood_type ?? '-' }}"
                                     data-nationality="{{ $personal->nationality_info->title ?? '-' }}"
@@ -142,21 +157,21 @@
                                     data-address="{{ $personal->address ?? '-' }}"
 
                                     data-family_status="{{ $family->family_status->title ?? '-' }}"
-                                    data-father_full_name_th="{{ $family->father_first_name_th.' '.$family->father_last_name_th ?? '-' }}"
-                                    data-father_full_name_en="{{ $family->father_first_name_en.' '.$family->father_last_name_en ?? '-' }}"
+                                    data-father_full_name_th="{{ $father_full_name_th }}"
+                                    data-father_full_name_en="{{ $father_full_name_en }}"
                                     data-father_life="{{ Auth::convertLifeFromENToTH($family->father_life) ?? '-' }}"
                                     data-father_income="{{ Auth::convertIncomeFromENToTH($family->father_income) ?? '-' }}"
                                     data-father_career="{{ $family->father_career->title ?? '-' }}"
-                                    data-mother_full_name_th="{{ $family->mother_first_name_th.' '.$family->mother_last_name_th ?? '-' }}"
-                                    data-mother_full_name_en="{{ $family->mother_first_name_en.' '.$family->mother_last_name_en ?? '-' }}"
+                                    data-mother_full_name_th="{{ $mother_full_name_th }}"
+                                    data-mother_full_name_en="{{ $mother_full_name_en }}"
                                     data-mother_life="{{ Auth::convertLifeFromENToTH($family->mother_life) ?? '-' }}"
                                     data-mother_income="{{ Auth::convertIncomeFromENToTH($family->mother_income) ?? '-' }}"
                                     data-mother_career="{{ $family->mother_career->title ?? '-' }}"
-                                    data-relative_full_name_th="{{ $family->relative_first_name_th.' '.$family->relative_last_name_th ?? '-' }}"
-                                    data-relative_full_name_en="{{ $family->relative_first_name_en.' '.$family->relative_last_name_en ?? '-' }}"
+                                    data-relative_full_name_th="{{ $relative_full_name_th }}"
+                                    data-relative_full_name_en="{{ $relative_full_name_en }}"
                                     data-relationship="{{ $family->relationship->title ?? '-' }}"
                                     data-relative_life="{{ Auth::convertLifeFromENToTH($family->relative_life) ?? '-' }}"
-                                    data-relative_address="{{ $family->address ?? '-' }}"
+                                    data-relative_address="{{ $family->relative_address ?? '-' }}"
                                     data-relative_income="{{ Auth::convertIncomeFromENToTH($family->relative_income) ?? '-' }}"
                                     data-relative_career="{{ $family->relative_career->title ?? '-' }}"
 
@@ -187,6 +202,12 @@
                         </td>
                     </tr>
                 @endforeach
+
+                @if(count($students) == 0)
+                    <tr>
+                        <td id="emptyData" class="text-center">ไม่มีข้อมูล</td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>
@@ -210,13 +231,13 @@
                 <div class="modal-body">
                     <div class="tabs">
                         <nav class="tab-nav">
-                            <button id="studentTab" class="nav-link h5 active">ข้อมูลนักศึกษา</button>
+                            <button id="studentTab" class="nav-link h5">ข้อมูลนักศึกษา</button>
                             <button id="personalTab" class="nav-link h5">ประวัติส่วนตัว</button>
                             <button id="familyTab" class="nav-link h5">ประวัติครอบครัว</button>
                             <button id="educationTab" class="nav-link h5">ประวัติการศึกษา</button>
                         </nav>
                         <div class="collapsible open mt-5">
-                            <div id="studentContent"></div>
+                            <div id="studentContent" class="hidden"></div>
                             <div id="personalContent" class="hidden"></div>
                             <div id="familyContent" class="hidden"></div>
                             <div id="educationContent" class="hidden"></div>
@@ -267,6 +288,10 @@
             appendTo: document.body
         });
 
+        // Empty Table.
+        const countHeader = $('table thead th').length;
+        $('#emptyData').attr('colspan', countHeader);
+
         // Search.
         $('#searchForm').on('submit', function (e) {
             e.preventDefault();
@@ -274,6 +299,36 @@
             urlParams.set('search', $('input[name="search"]').val());
             urlParams.set('page', '1');
             window.location.href = window.location.pathname + '?' + urlParams.toString();
+        });
+
+        // Tab.
+        function changeTab() {
+            $('.collapsible').children().addClass('hidden');
+            $('.tab-nav').children().removeClass('active');
+        }
+
+        $('#studentTab').on('click', function () {
+            changeTab();
+            $(this).addClass('active');
+            $('#studentContent').removeClass('hidden');
+        });
+
+        $('#personalTab').on('click', function () {
+            changeTab();
+            $(this).addClass('active');
+            $('#personalContent').removeClass('hidden');
+        });
+
+        $('#familyTab').on('click', function () {
+            changeTab();
+            $(this).addClass('active');
+            $('#familyContent').removeClass('hidden');
+        });
+
+        $('#educationTab').on('click', function () {
+            changeTab();
+            $(this).addClass('active');
+            $('#educationContent').removeClass('hidden');
         });
 
         // Modal.
@@ -352,36 +407,6 @@
         $('.close').on('click', function () {
             document.body.classList.remove('backdrop-show');
             $('#detailModal').addClass('hidden');
-        });
-
-        // Tab.
-        function changeTab() {
-            $('.collapsible').children().addClass('hidden');
-            $('.tab-nav').children().removeClass('active');
-        }
-
-        $('#studentTab').on('click', function () {
-            changeTab();
-            $(this).addClass('active');
-            $('#studentContent').removeClass('hidden');
-        });
-
-        $('#personalTab').on('click', function () {
-            changeTab();
-            $(this).addClass('active');
-            $('#personalContent').removeClass('hidden');
-        });
-
-        $('#familyTab').on('click', function () {
-            changeTab();
-            $(this).addClass('active');
-            $('#familyContent').removeClass('hidden');
-        });
-
-        $('#educationTab').on('click', function () {
-            changeTab();
-            $(this).addClass('active');
-            $('#educationContent').removeClass('hidden');
         });
     });
 </script>

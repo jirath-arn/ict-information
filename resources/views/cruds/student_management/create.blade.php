@@ -30,10 +30,10 @@
 
 <div class="card">
     <div class="overflow-x-auto p-10">
-        <form id="createForm" action="{{ route('student_management.store') }}" method="POST">
+        <form id="createForm" action="{{ route('student_management.store') }}" method="POST" onsubmit="return confirm('ยืนยันบันทึกข้อมูลหรือไม่ ?');">
             @csrf
 
-            <x-student-update-component
+            <x-student.student-update-component
                 :prefix="$prefix"
                 :student-status="$student_status"
                 :current-year="$current_year"

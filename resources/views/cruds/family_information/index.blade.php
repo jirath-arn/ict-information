@@ -37,7 +37,7 @@
             :relative-full-name-en="$info->relative_full_name_en"
             :relationship="$info->relationship->title"
             :relative-life="$info->relative_life"
-            :relative-address="$info->address"
+            :relative-address="$info->relative_address"
             :relative-income="$info->relative_income"
             :relative-career="$info->relative_career->title"
         />
