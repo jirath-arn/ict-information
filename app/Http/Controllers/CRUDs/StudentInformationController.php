@@ -15,12 +15,7 @@ class StudentInformationController extends Controller
     {
         $student_information = StudentInformation::where('user_id', '=', Auth::getId())->first();
         $user = $student_information->user;
-        $student_status = $student_information->student_status;
         $advisor = $student_information->advisor;
-
-        // Student Status.
-        $student_status_info = new \stdClass();
-        $student_status_info->title = $student_status->title;
 
         // Advisor.
         $advisor_info = new \stdClass();
@@ -34,7 +29,7 @@ class StudentInformationController extends Controller
         $info->full_name_with_prefix_th = Auth::getFullNameWithPrefixTH();
         $info->full_name_with_prefix_en = Auth::getFullNameWithPrefixEN();
         $info->rmutto_email = $user->rmutto_email;
-        $info->student_status = $student_status_info;
+        $info->student_status = $student_information->student_status;
         $info->level = $student_information->level;
         $info->year = Date::convertFromADToBE($student_information->year);
         $info->advisor = $advisor_info;

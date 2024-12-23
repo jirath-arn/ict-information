@@ -86,21 +86,8 @@ class PersonalInformationController extends Controller
     private function getInfo(): \stdClass
     {
         $personal_information = PersonalInformation::where('user_id', '=', Auth::getId())->first();
-        $nationality = $personal_information->nationality_info;
-        $ethnicity = $personal_information->ethnicity_info;
         $user = $personal_information->user;
 
-        // Nationality.
-        $nationality_info = new \stdClass();
-        $nationality_info->code = $nationality->code ?? null;
-        $nationality_info->title = $nationality->title ?? null;
-
-        // Ethnicity.
-        $ethnicity_info = new \stdClass();
-        $ethnicity_info->code = $ethnicity->code ?? null;
-        $ethnicity_info->title = $ethnicity->title ?? null;
-
-        // Personal Information.
         $info = new \stdClass();
         $info->birth_date = $personal_information->birth_date;
         $info->weight = $personal_information->weight;
@@ -110,8 +97,8 @@ class PersonalInformationController extends Controller
         $info->scholarship = $personal_information->scholarship;
         $info->disability = $personal_information->disability;
         $info->blood_type = $personal_information->blood_type;
-        $info->nationality = $nationality_info;
-        $info->ethnicity = $ethnicity_info;
+        $info->nationality = $personal_information->nationality_info;
+        $info->ethnicity = $personal_information->ethnicity_info;
         $info->religion = $personal_information->religion;
         $info->shirt_size = $personal_information->shirt_size;
         $info->interest = $personal_information->interest;

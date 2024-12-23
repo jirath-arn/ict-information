@@ -32,7 +32,7 @@ class TeacherManagementController extends Controller
         return redirect()->route('teacher_management.index');
     }
 
-    public function edit($id): View
+    public function edit($id): View|RedirectResponse
     {
         // TODO.
 

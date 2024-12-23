@@ -82,8 +82,17 @@ class FamilyInformationController extends Controller
             'relative_life' => ['nullable', Rule::in(Life::getKeys())],
             'relative_income' => ['nullable', Rule::in(Income::getKeys())],
             'relative_career_id' => ['nullable', 'exists:careers,id'],
-            'address' => ['nullable']
+            'relative_address' => ['nullable']
         ]);
+
+        $input = $request->all();
+        $input['father_first_name_en'] = isset($request->father_first_name_en) ? ucfirst(strtolower($request->father_first_name_en)) : null;
+        $input['father_last_name_en'] = isset($request->father_last_name_en) ? ucfirst(strtolower($request->father_last_name_en)) : null;
+        $input['mother_first_name_en'] = isset($request->mother_first_name_en) ? ucfirst(strtolower($request->mother_first_name_en)) : null;
+        $input['mother_last_name_en'] = isset($request->mother_last_name_en) ? ucfirst(strtolower($request->mother_last_name_en)) : null;
+        $input['relative_first_name_en'] = isset($request->relative_first_name_en) ? ucfirst(strtolower($request->relative_first_name_en)) : null;
+        $input['relative_last_name_en'] = isset($request->relative_last_name_en) ? ucfirst(strtolower($request->relative_last_name_en)) : null;
+        $request->merge($input);
 
         $family_information = FamilyInformation::where('user_id', '=', Auth::getId())->first();
         $family_information->update($request->all());
@@ -94,47 +103,16 @@ class FamilyInformationController extends Controller
     private function getInfo(): \stdClass
     {
         $family_information = FamilyInformation::where('user_id', '=', Auth::getId())->first();
-        $family_status = $family_information->family_status;
-        $father_career = $family_information->father_career;
-        $mother_career = $family_information->mother_career;
-        $relative_career = $family_information->relative_career;
-        $relationship = $family_information->relationship;
 
-        // Family Status.
-        $family_status_info = new \stdClass();
-        $family_status_info->id = $family_status->id ?? null;
-        $family_status_info->title = $family_status->title ?? null;
-
-        // Father Career.
-        $father_career_info = new \stdClass();
-        $father_career_info->id = $father_career->id ?? null;
-        $father_career_info->title = $father_career->title ?? null;
-
-        // Mother Career.
-        $mother_career_info = new \stdClass();
-        $mother_career_info->id = $mother_career->id ?? null;
-        $mother_career_info->title = $mother_career->title ?? null;
-
-        // Relative Career.
-        $relative_career_info = new \stdClass();
-        $relative_career_info->id = $relative_career->id ?? null;
-        $relative_career_info->title = $relative_career->title ?? null;
-
-        // Relationship.
-        $relationship_info = new \stdClass();
-        $relationship_info->id = $relationship->id ?? null;
-        $relationship_info->title = $relationship->title ?? null;
-
-        // Family Information.
         $info = new \stdClass();
-        $info->family_status = $family_status_info;
+        $info->family_status = $family_information->family_status;
         $info->father_first_name_th = $family_information->father_first_name_th;
         $info->father_last_name_th = $family_information->father_last_name_th;
         $info->father_first_name_en = $family_information->father_first_name_en;
         $info->father_last_name_en = $family_information->father_last_name_en;
         $info->father_life = $family_information->father_life;
         $info->father_income = $family_information->father_income;
-        $info->father_career = $father_career_info;
+        $info->father_career = $family_information->father_career;
 
         $info->mother_first_name_th = $family_information->mother_first_name_th;
         $info->mother_last_name_th = $family_information->mother_last_name_th;
@@ -142,7 +120,7 @@ class FamilyInformationController extends Controller
         $info->mother_last_name_en = $family_information->mother_last_name_en;
         $info->mother_life = $family_information->mother_life;
         $info->mother_income = $family_information->mother_income;
-        $info->mother_career = $mother_career_info;
+        $info->mother_career = $family_information->mother_career;
 
         $info->relative_first_name_th = $family_information->relative_first_name_th;
         $info->relative_last_name_th = $family_information->relative_last_name_th;
@@ -150,9 +128,9 @@ class FamilyInformationController extends Controller
         $info->relative_last_name_en = $family_information->relative_last_name_en;
         $info->relative_life = $family_information->relative_life;
         $info->relative_income = $family_information->relative_income;
-        $info->relative_career = $relative_career_info;
-        $info->relationship = $relationship_info;
-        $info->address = $family_information->address;
+        $info->relative_career = $family_information->relative_career;
+        $info->relationship = $family_information->relationship;
+        $info->relative_address = $family_information->relative_address;
 
         return $info;
     }
