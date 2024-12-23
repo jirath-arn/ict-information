@@ -25,7 +25,8 @@ class Permission
         $admin = array(
             'dashboard',
             'student_management',
-            'teacher_management'
+            'teacher_management',
+            'profile'
         );
 
         $paths = explode('/', $request->path());
