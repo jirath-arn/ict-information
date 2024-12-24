@@ -37,7 +37,7 @@
                 <tbody>
                     <tr>
                         <td class="w-1/4 text-right font-bold">
-                            ผู้ดูแลระบบ
+                            รหัสผู้ดูแลระบบ
                         </td>
                         <td class="w-3/4 text-left">
                             {{ $info->admin_id ?? '-' }}

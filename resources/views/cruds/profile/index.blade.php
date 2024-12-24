@@ -42,9 +42,9 @@
                         @if(Auth::getRoleEN() == Role::STUDENT)
                             รหัสนักศึกษา
                         @elseif (Auth::getRoleEN() == Role::TEACHER)
-                            รหัสพนักงาน
+                            รหัสอาจารย์
                         @else
-                            ผู้ดูแลระบบ
+                            รหัสผู้ดูแลระบบ
                         @endif
                     </td>
                     <td class="w-3/4 text-left">

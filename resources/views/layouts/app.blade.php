@@ -133,7 +133,7 @@
 
                     <a href="{{ route('teacher_management.index') }}" class="link">
                         <span class="icon la la-user-tie"></span>
-                        <span class="title">จัดการข้อมูลผู้สอน</span>
+                        <span class="title">จัดการข้อมูลอาจารย์</span>
                     </a>
 
                     <a href="{{ route('student_management.index') }}" class="link">

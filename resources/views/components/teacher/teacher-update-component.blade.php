@@ -10,7 +10,7 @@
         @if($path != 'create')
             <tr>
                 <td class="w-1/4 text-right font-bold">
-                    รหัสพนักงาน
+                    รหัสอาจารย์
                 </td>
                 <td class="w-3/4 text-left">
                     {{ $info->employee_id ?? '-' }}

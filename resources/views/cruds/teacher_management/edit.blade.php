@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'แก้ไขข้อมูลผู้สอน')
+@section('title', 'แก้ไขข้อมูลอาจารย์')
 
 @section('content')
 <div class="lg:flex items-start">
     <section class="breadcrumb">
-        <h1>แก้ไขข้อมูลผู้สอน</h1>
+        <h1>แก้ไขข้อมูลอาจารย์</h1>
         <ul>
             <li>
-                <a href="{{ route('teacher_management.index') }}">จัดการข้อมูลผู้สอน</a>
+                <a href="{{ route('teacher_management.index') }}">จัดการข้อมูลอาจารย์</a>
             </li>
             <li class="divider la la-arrow-right"></li>
-            <li>แก้ไขข้อมูลผู้สอน</li>
+            <li>แก้ไขข้อมูลอาจารย์</li>
         </ul>
     </section>
 

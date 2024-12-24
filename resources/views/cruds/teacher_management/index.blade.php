@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'จัดการข้อมูลผู้สอน')
+@section('title', 'จัดการข้อมูลอาจารย์')
 
 @section('styles')
 @php
@@ -12,9 +12,9 @@
 @section('content')
 <div class="lg:flex items-start">
     <section class="breadcrumb">
-        <h1>จัดการข้อมูลผู้สอน</h1>
+        <h1>จัดการข้อมูลอาจารย์</h1>
         <ul>
-            <li>จัดการข้อมูลผู้สอน</li>
+            <li>จัดการข้อมูลอาจารย์</li>
         </ul>
     </section>
 
@@ -35,8 +35,8 @@
                     <hr />
                     <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'full_name_th', 'sort_direction' => 'asc'])) }}">ชื่อ - นามสกุล (ก - ฮ)</a>
                     <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'full_name_th', 'sort_direction' => 'desc'])) }}">ชื่อ - นามสกุล (ฮ - ก)</a>
-                    <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'employee_id', 'sort_direction' => 'asc'])) }}">รหัสพนักงาน (น้อย - มาก)</a>
-                    <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'employee_id', 'sort_direction' => 'desc'])) }}">รหัสพนักงาน (มาก - น้อย)</a>
+                    <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'employee_id', 'sort_direction' => 'asc'])) }}">รหัสอาจารย์ (น้อย - มาก)</a>
+                    <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'employee_id', 'sort_direction' => 'desc'])) }}">รหัสอาจารย์ (มาก - น้อย)</a>
                     <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'rmutto_email', 'sort_direction' => 'asc'])) }}">อีเมล Rmutto (น้อย - มาก)</a>
                     <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'rmutto_email', 'sort_direction' => 'desc'])) }}">อีเมล Rmutto (มาก - น้อย)</a>
                     <a href="{{ route('teacher_management.index', array_merge(request()->query(), ['sort_by' => 'full_name_en', 'sort_direction' => 'asc'])) }}">Full Name (A - Z)</a>
@@ -50,7 +50,7 @@
             </button>
 
             <a href="{{ route('teacher_management.create') }}" class="btn btn_primary uppercase">
-                เพิ่มผู้สอนใหม่
+                เพิ่มอาจารย์ใหม่
             </a>
         </div>
     </div>
@@ -63,7 +63,7 @@
             <thead>
                 <tr>
                     <th class="text-center uppercase">#</th>
-                    <th class="text-center uppercase">รหัสพนักงาน</th>
+                    <th class="text-center uppercase">รหัสอาจารย์</th>
                     <th class="text-center uppercase">คำนำหน้า</th>
                     <th class="text-center uppercase">ชื่อ - นามสกุล</th>
                     <th class="text-center uppercase">Prefix</th>
