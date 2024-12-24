@@ -13,16 +13,19 @@ class Permission
     public function handle(Request $request, Closure $next): Response
     {
         $student = array(
+            'logout',
             'student_information',
             'personal_information',
             'family_information',
             'education_information'
         );
         $teacher = array(
+            'logout',
             'dashboard',
             'student_management'
         );
         $admin = array(
+            'logout',
             'dashboard',
             'student_management',
             'teacher_management',
