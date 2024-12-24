@@ -52,7 +52,7 @@
                         <hr />
 
                         <div class="p-5">
-                            <a href="{{ route('logout') }}" class="flex items-center text-gray-700 hover:text-primary" onclick="event.preventDefault(); $('#logoutForm').submit();">
+                            <a href="#" class="flex items-center text-gray-700 hover:text-primary" onclick="event.preventDefault(); $('#logoutForm').submit();">
                                 <span class="la la-power-off text-2xl leading-none mr-2"></span>
                                 ออกจากระบบ
                             </a>
