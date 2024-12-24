@@ -1,6 +1,19 @@
-FROM richarvey/nginx-php-fpm:3.1.6
+FROM node:20-alpine AS builder
+
+WORKDIR /app
 
 COPY . .
+
+# Laravel config
+ENV APP_ENV production
+ENV APP_DEBUG false
+
+RUN npm install
+RUN npm run build
+
+FROM richarvey/nginx-php-fpm:3.1.6
+
+COPY --from=builder /app .
 
 # Image config
 ENV SKIP_COMPOSER 1
