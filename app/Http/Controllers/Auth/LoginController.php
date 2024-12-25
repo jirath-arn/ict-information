@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
-use App\Helpers\Auth;
 
 class LoginController extends Controller
 {
@@ -33,7 +33,7 @@ class LoginController extends Controller
 
     protected function redirectTo(): string
     {
-        $role = Auth::getRoleEN();
+        $role = auth()->user()->role->value;
 
         if ($role == Role::STUDENT) {
             return '/student_information';
@@ -66,6 +66,7 @@ class LoginController extends Controller
 
     public function logout(Request $request): RedirectResponse
     {
+        Auth::logout();
         $this->guard()->logout();
         $request->session()->invalidate();
         $request->session()->regenerate();
