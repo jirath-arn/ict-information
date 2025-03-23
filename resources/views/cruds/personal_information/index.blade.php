@@ -22,20 +22,20 @@
 <div class="card">
     <div class="overflow-x-auto p-10">
         <x-student.personal-info-component
-            :birth-date="$info->birth_date"
-            :weight="$info->weight"
-            :height="$info->height"
-            :email="$info->email"
-            :tel="$info->tel"
-            :scholarship="$info->scholarship"
-            :disability="$info->disability"
-            :blood-type="$info->blood_type"
-            :nationality="$info->nationality->title"
-            :ethnicity="$info->ethnicity->title"
-            :religion="$info->religion"
-            :shirt-size="$info->shirt_size"
-            :interest="$info->interest"
-            :address="$info->address"
+            birth-date="{{ $info->birth_date ?? '-' }}"
+            weight="{{ $info->weight ?? '-' }}"
+            height="{{ $info->height ?? '-' }}"
+            email="{{ $info->email ?? '-' }}"
+            tel="{{ $info->tel ?? '-' }}"
+            scholarship="{{ $info->scholarship }}"
+            disability="{{ $info->disability ?? '-' }}"
+            blood-type="{{ $info->blood_type ?? '-' }}"
+            nationality="{{ $info->nationality->title ?? '-' }}"
+            ethnicity="{{ $info->ethnicity->title ?? '-' }}"
+            religion="{{ $info->religion ?? '-' }}"
+            shirt-size="{{ $info->shirt_size ?? '-' }}"
+            interest="{{ $info->interest ?? '-' }}"
+            address="{{ $info->address ?? '-' }}"
         />
     </div>
 </div>
