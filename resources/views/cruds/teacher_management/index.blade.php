@@ -52,6 +52,14 @@
             <a href="{{ route('teacher_management.create') }}" class="btn btn_primary uppercase">
                 เพิ่มอาจารย์ใหม่
             </a>
+
+            <form id="excelForm" action="{{ route('teacher_management.import_excel') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input id="excelFile" name="excel_file" type="file" class="hidden" accept=".xls,.xlsx" />
+                <button id="importExcel" class="btn btn_primary uppercase">
+                    นำเข้า Excel
+                </button>
+            </form>
         </div>
     </div>
 </div>
@@ -124,6 +132,10 @@
 @section('scripts')
 <script type="module">
     $(document).ready(function() {
+        @error('excel')
+            alert("{{ $message }}");
+        @enderror
+
         // Initialize Tippy.js Tooltip.
         tippy('#sortBy', {
             content: $('#sortByTooltip').html(),
@@ -150,6 +162,19 @@
             allowHTML: true,
             animation: 'shift-toward-extreme',
             appendTo: document.body
+        });
+
+        // Excel File.
+        $('#importExcel').on('click', function (e) {
+            e.preventDefault();
+            $('#excelFile').click();
+        });
+
+        $('#excelFile').on('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                $('#excelForm').submit();
+            }
         });
 
         // Empty Table.

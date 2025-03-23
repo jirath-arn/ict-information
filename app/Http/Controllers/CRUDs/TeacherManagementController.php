@@ -10,10 +10,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Exception;
+use Excel;
 use App\Enums\Prefix;
 use App\Enums\Status;
 use App\Enums\Role;
 use App\Models\User;
+use App\Imports\TeacherImport;
 
 class TeacherManagementController extends Controller
 {
@@ -67,6 +70,23 @@ class TeacherManagementController extends Controller
         $prefix = Prefix::getKeys();
 
         return view('cruds.teacher_management.create', compact('prefix'));
+    }
+
+    public function importExcel(Request $request): Response|RedirectResponse
+    {
+        $request->validate([
+            'excel_file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        try {
+            Excel::import(new TeacherImport, $request->file('excel_file'));
+            return redirect()->route('teacher_management.index');
+
+        } catch (Exception $e) {
+            throw ValidationException::withMessages([
+                'excel' => ['นำเข้า Excel ไม่สำเร็จ! กรุณาตรวจสอบข้อมูลให้ถูกต้อง']
+            ]);
+        }
     }
 
     public function store(Request $request): Response|RedirectResponse

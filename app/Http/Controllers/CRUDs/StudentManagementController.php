@@ -4,6 +4,8 @@ namespace App\Http\Controllers\CRUDs;
 
 use App\Http\Controllers\Controller;
 use DateTime;
+use Exception;
+use Excel;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -35,6 +37,7 @@ use App\Models\Career;
 use App\Models\Relationship;
 use App\Models\Country;
 use App\Models\StudentStatus;
+use App\Imports\StudentImport;
 
 class StudentManagementController extends Controller
 {
@@ -99,6 +102,23 @@ class StudentManagementController extends Controller
             ->get();
 
         return view('cruds.student_management.create', compact('prefix', 'student_status', 'current_year', 'transfer', 'advisors'));
+    }
+
+    public function importExcel(Request $request): Response|RedirectResponse
+    {
+        $request->validate([
+            'excel_file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        try {
+            Excel::import(new StudentImport, $request->file('excel_file'));
+            return redirect()->route('student_management.index');
+
+        } catch (Exception $e) {
+            throw ValidationException::withMessages([
+                'excel' => ['นำเข้า Excel ไม่สำเร็จ! กรุณาตรวจสอบข้อมูลให้ถูกต้อง']
+            ]);
+        }
     }
 
     public function store(Request $request): Response|RedirectResponse

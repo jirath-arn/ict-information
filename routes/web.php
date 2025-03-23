@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('student_management/{id}/edit', [StudentManagementController::class, 'edit'])->name('student_management.edit');
         Route::put('student_management/{id}/update', [StudentManagementController::class, 'update'])->name('student_management.update');
         Route::delete('student_management/{id}', [StudentManagementController::class, 'destroy'])->name('student_management.destroy');
+        Route::post('student_management/import_excel', [StudentManagementController::class, 'importExcel'])->name('student_management.import_excel');
 
         // Teacher Management.
         Route::get('teacher_management', [TeacherManagementController::class, 'index'])->name('teacher_management.index');
@@ -67,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('teacher_management/{id}/edit', [TeacherManagementController::class, 'edit'])->name('teacher_management.edit');
         Route::put('teacher_management/{id}/update', [TeacherManagementController::class, 'update'])->name('teacher_management.update');
         Route::delete('teacher_management/{id}', [TeacherManagementController::class, 'destroy'])->name('teacher_management.destroy');
+        Route::post('teacher_management/import_excel', [TeacherManagementController::class, 'importExcel'])->name('teacher_management.import_excel');
 
         // Profile.
         Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

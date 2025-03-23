@@ -209,4 +209,21 @@ class Auth
         else                        $life = null;
         return $life;
     }
+
+    public static function convertPrefixFromTHToEN($prefix): string|null
+    {
+        if ($prefix == 'นาย')           $prefix = Prefix::MR;
+        elseif ($prefix == 'นางสาว')    $prefix = Prefix::MISS;
+        elseif ($prefix == 'นาง')       $prefix = Prefix::MRS;
+        else                            $prefix = null;
+        return $prefix;
+    }
+
+    public static function convertTransferFromTHToEN($transfer): string|null
+    {
+        if ($transfer == 'เทียบโอน') $transfer = Transfer::TRANSFER;
+        elseif ($transfer == 'ปกติ') $transfer = Transfer::NORMAL;
+        else                        $transfer = null;
+        return $transfer;
+    }
 }
